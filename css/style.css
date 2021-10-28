@@ -377,7 +377,8 @@ html.show-mobile-nav {
 }
 html.show-mobile-nav .navbar-list {
   display: flex;
-  animation: showMobileNav 0.4s ease-out forwards;
+  -webkit-animation: showMobileNav 0.4s ease-out forwards;
+          animation: showMobileNav 0.4s ease-out forwards;
 }
 .navbar {
   position: relative;
@@ -418,7 +419,10 @@ html.show-mobile-nav .navbar-list {
 .navbar-list-item {
   display: block;
   text-decoration: none;
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 .navbar-list-item a {
   display: block;
@@ -530,27 +534,7 @@ html.show-mobile-nav .navbar-list {
     color: #161b3d;
   }
 }
-@-moz-keyframes showMobileNav {
-  from {
-    opacity: 0;
-    transform: translateX(70%);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
 @-webkit-keyframes showMobileNav {
-  from {
-    opacity: 0;
-    transform: translateX(70%);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-@-o-keyframes showMobileNav {
   from {
     opacity: 0;
     transform: translateX(70%);
@@ -1063,7 +1047,8 @@ html.show-mobile-nav .navbar-list {
   min-width: 46px;
   height: 46px;
   margin-right: 12px;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   flex: 0 0 46px;
 }
 .content-container.post-container .article-info .page-link-container .link-item > a div {
@@ -1080,6 +1065,7 @@ html.show-mobile-nav .navbar-list {
 .content-container.post-container .widget-info {
   display: flex;
   flex-direction: column;
+  position: -webkit-sticky;
   position: sticky;
   top: 0;
   width: 360px;
