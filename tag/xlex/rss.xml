@@ -7,12 +7,14 @@
         <language>zh-CN</language>
         <pubDate>Sun, 31 Oct 2021 14:33:54 +0800</pubDate>
         <lastBuildDate>Sun, 31 Oct 2021 14:33:54 +0800</lastBuildDate>
-        <category>leetcode</category>
-        <category>数组</category>
-        <category>二分查找</category>
         <category>编译原理</category>
         <category>SCNU-CS</category>
         <category>XLEX</category>
+        <category>leetcode</category>
+        <category>数组</category>
+        <category>二分查找</category>
+        <category>JavaSE</category>
+        <category>学习笔记</category>
         <item>
             <guid isPermalink="true">http://example.com/2021/10/31/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E5%AE%9E%E9%AA%8C%E4%BA%8C-XLEX/</guid>
             <title>编译原理实验二 XLEX</title>
