@@ -7,12 +7,12 @@
         <language>zh-CN</language>
         <pubDate>Thu, 04 Nov 2021 22:21:51 +0800</pubDate>
         <lastBuildDate>Thu, 04 Nov 2021 22:21:51 +0800</lastBuildDate>
-        <category>编译原理</category>
-        <category>SCNU-CS</category>
-        <category>XLEX</category>
         <category>leetcode</category>
         <category>数组</category>
         <category>二分查找</category>
+        <category>编译原理</category>
+        <category>SCNU-CS</category>
+        <category>XLEX</category>
         <category>JavaSE</category>
         <category>学习笔记</category>
         <item>
@@ -23,9 +23,6 @@
             <category>学习笔记</category>
             <pubDate>Thu, 04 Nov 2021 22:21:51 +0800</pubDate>
             <description><![CDATA[ &lt;h1 id=&#34;java&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#java&#34;&gt;#&lt;/a&gt; Java&lt;/h1&gt;
-&lt;h2 id=&#34;关于&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#关于&#34;&gt;#&lt;/a&gt; 关于&lt;/h2&gt;
-&lt;p&gt;这是学习 Java 基础的时候敲的代码，记录一下&lt;/p&gt;
-&lt;p&gt;基本语法就不敲了吧&lt;/p&gt;
 &lt;h2 id=&#34;多线程&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#多线程&#34;&gt;#&lt;/a&gt; 多线程&lt;/h2&gt;
 &lt;h3 id=&#34;线程同步&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#线程同步&#34;&gt;#&lt;/a&gt; 线程同步&lt;/h3&gt;
 &lt;ol&gt;
