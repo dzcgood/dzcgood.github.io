@@ -4,15 +4,15 @@
     <title>DzcGood • Posts by &#34;面向offer学习记录&#34; category</title>
     <link href="http://example.com" />
     <updated>2021-11-05T16:09:32.000Z</updated>
+    <category term="MySQL" />
+    <category term="学习笔记" />
+    <category term="JavaSE" />
     <category term="leetcode" />
     <category term="数组" />
     <category term="二分查找" />
     <category term="编译原理" />
     <category term="SCNU-CS" />
     <category term="XLEX" />
-    <category term="JavaSE" />
-    <category term="学习笔记" />
-    <category term="MySQL" />
     <entry>
         <id>http://example.com/2021/11/06/MySQL%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</id>
         <title>MySQL</title>
@@ -110,8 +110,8 @@
 &lt;/li&gt;
 &lt;/ul&gt;
 </content>
-        <category term="学习笔记" />
         <category term="MySQL" />
+        <category term="学习笔记" />
         <updated>2021-11-05T16:09:32.000Z</updated>
     </entry>
     <entry>
@@ -410,8 +410,8 @@
 &lt;p&gt;撒花撒花撒花。。。。。。&lt;/p&gt;
 &lt;p&gt;Next Step ------ MySql&lt;/p&gt;
 </content>
-        <category term="JavaSE" />
         <category term="学习笔记" />
+        <category term="JavaSE" />
         <updated>2021-11-04T14:21:51.000Z</updated>
     </entry>
 </feed>

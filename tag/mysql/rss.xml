@@ -7,21 +7,21 @@
         <language>zh-CN</language>
         <pubDate>Sat, 06 Nov 2021 00:09:32 +0800</pubDate>
         <lastBuildDate>Sat, 06 Nov 2021 00:09:32 +0800</lastBuildDate>
+        <category>MySQL</category>
+        <category>学习笔记</category>
+        <category>JavaSE</category>
         <category>leetcode</category>
         <category>数组</category>
         <category>二分查找</category>
         <category>编译原理</category>
         <category>SCNU-CS</category>
         <category>XLEX</category>
-        <category>JavaSE</category>
-        <category>学习笔记</category>
-        <category>MySQL</category>
         <item>
             <guid isPermalink="true">http://example.com/2021/11/06/MySQL%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</guid>
             <title>MySQL</title>
             <link>http://example.com/2021/11/06/MySQL%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</link>
-            <category>学习笔记</category>
             <category>MySQL</category>
+            <category>学习笔记</category>
             <pubDate>Sat, 06 Nov 2021 00:09:32 +0800</pubDate>
             <description><![CDATA[ &lt;h1 id=&#34;mysql学习记录&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#mysql学习记录&#34;&gt;#&lt;/a&gt; MySQL 学习记录&lt;/h1&gt;
 &lt;h2 id=&#34;服务的启动与关闭&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#服务的启动与关闭&#34;&gt;#&lt;/a&gt; 服务的启动与关闭&lt;/h2&gt;
