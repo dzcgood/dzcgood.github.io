@@ -5,6 +5,17 @@
     "home_page_url": "http://example.com",
     "items": [
         {
+            "id": "http://example.com/2021/11/06/MySQL%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/",
+            "url": "http://example.com/2021/11/06/MySQL%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/",
+            "title": "MySQL",
+            "date_published": "2021-11-05T16:09:32.000Z",
+            "content_html": "<h1 id=\"mysql学习记录\"><a class=\"markdownIt-Anchor\" href=\"#mysql学习记录\">#</a> MySQL 学习记录</h1>\n<h2 id=\"服务的启动与关闭\"><a class=\"markdownIt-Anchor\" href=\"#服务的启动与关闭\">#</a> 服务的启动与关闭</h2>\n<blockquote>\n<p>启动：net start 服务名</p>\n<p>关闭：net stop 服务名</p>\n</blockquote>\n<h2 id=\"服务端的登录和退出\"><a class=\"markdownIt-Anchor\" href=\"#服务端的登录和退出\">#</a> 服务端的登录和退出</h2>\n<ul>\n<li>\n<p>方法一：</p>\n<blockquote>\n<p><strong>登录</strong>：打开 MySQL 8.0 Command Line Client，输入密码即可。这种方式只能是 root 用户使用，不推荐</p>\n</blockquote>\n<blockquote>\n<p><strong>退出</strong>：exit</p>\n</blockquote>\n</li>\n<li>\n<p>方法二：</p>\n<blockquote>\n<p><strong>登录</strong>：通过 windows cmd 输入指令 mysql -h 服务器 ip -P 端口号 -u 用户 -p 密码</p>\n<blockquote>\n<p><strong>例如</strong>： mysql -h localhost -P 3306 -u root -p 123456</p>\n<p><strong>注意</strong>：-p 和空格之间<strong>不能有空格</strong></p>\n<p>如果是本机登录，则 - h，-P 可以省略</p>\n</blockquote>\n<p><strong>退出</strong>：exit</p>\n</blockquote>\n</li>\n</ul>\n<h2 id=\"常见命令\"><a class=\"markdownIt-Anchor\" href=\"#常见命令\">#</a> 常见命令</h2>\n<ul>\n<li>\n<p>查看当前所有数据库：<em>show databases;</em></p>\n</li>\n<li>\n<p>打开指定的库：<em>use 库名；</em></p>\n</li>\n<li>\n<p>查看当前库所有表：<em>show tables;</em></p>\n</li>\n<li>\n<p>查看其他库所有表：<em>show tables from 库名；</em></p>\n</li>\n<li>\n<p>创建表：<em>create table 表名 (</em></p>\n<p>​\t\t\t\t<em>列名 列类型，</em></p>\n<p>​\t\t\t\t<em>列名 列类型，</em></p>\n<p>​\t\t\t\t<em>…</em></p>\n<p>​\t\t\t<em>);</em></p>\n</li>\n<li>\n<p>查看表结构：<em>desc 表名；</em></p>\n</li>\n<li>\n<p>查看服务器版本</p>\n<ul>\n<li>\n<p>方式一：</p>\n<blockquote>\n<p>登录到 mysql 服务端后，select version ();</p>\n</blockquote>\n</li>\n<li>\n<p>方式二：</p>\n<blockquote>\n<p>windows cmd 出入<em> mysql --version</em> 或<em> mysql -V</em></p>\n</blockquote>\n</li>\n</ul>\n</li>\n</ul>\n<h2 id=\"mysql的语法规范\"><a class=\"markdownIt-Anchor\" href=\"#mysql的语法规范\">#</a> MySQL 的语法规范</h2>\n<ul>\n<li>\n<p><em><strong>不区分</strong></em>大小写，但建议关键字大写，表名和列名小写</p>\n</li>\n<li>\n<p>每条命令最好用分号结尾</p>\n</li>\n<li>\n<p>每条命令根据需要，可以进行<em><strong>缩进或换行</strong></em></p>\n</li>\n<li>\n<p>注释</p>\n<blockquote>\n<p>单行注释：# 注释文字</p>\n<p>单行注释：-- 注释文字（注意‘–’后必须有空格）</p>\n<p>多行注释：/* 注释文字 */</p>\n</blockquote>\n</li>\n</ul>\n",
+            "tags": [
+                "学习笔记",
+                "MySQL"
+            ]
+        },
+        {
             "id": "http://example.com/2021/11/04/JavaSE%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/",
             "url": "http://example.com/2021/11/04/JavaSE%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/",
             "title": "JavaSE",

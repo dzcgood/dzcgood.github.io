@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>MySQL</title>
+    <link href="/2021/11/06/MySQL%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    <url>/2021/11/06/MySQL%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
+    
+    <content type="html"><![CDATA[<h1 id="mysql学习记录"><a class="markdownIt-Anchor" href="#mysql学习记录">#</a> MySQL 学习记录</h1><h2 id="服务的启动与关闭"><a class="markdownIt-Anchor" href="#服务的启动与关闭">#</a> 服务的启动与关闭</h2><blockquote><p>启动：net start 服务名</p><p>关闭：net stop 服务名</p></blockquote><h2 id="服务端的登录和退出"><a class="markdownIt-Anchor" href="#服务端的登录和退出">#</a> 服务端的登录和退出</h2><ul><li><p>方法一：</p><blockquote><p><strong>登录</strong>：打开 MySQL 8.0 Command Line Client，输入密码即可。这种方式只能是 root 用户使用，不推荐</p></blockquote><blockquote><p><strong>退出</strong>：exit</p></blockquote></li><li><p>方法二：</p><blockquote><p><strong>登录</strong>：通过 windows cmd 输入指令 mysql -h 服务器 ip -P 端口号 -u 用户 -p 密码</p><blockquote><p><strong>例如</strong>： mysql -h localhost -P 3306 -u root -p 123456</p><p><strong>注意</strong>：-p 和空格之间<strong>不能有空格</strong></p><p>如果是本机登录，则 - h，-P 可以省略</p></blockquote><p><strong>退出</strong>：exit</p></blockquote></li></ul><h2 id="常见命令"><a class="markdownIt-Anchor" href="#常见命令">#</a> 常见命令</h2><ul><li><p>查看当前所有数据库：<em>show databases;</em></p></li><li><p>打开指定的库：<em>use 库名；</em></p></li><li><p>查看当前库所有表：<em>show tables;</em></p></li><li><p>查看其他库所有表：<em>show tables from 库名；</em></p></li><li><p>创建表：<em>create table 表名 (</em></p><p>​<em>列名 列类型，</em></p><p>​<em>列名 列类型，</em></p><p>​<em>…</em></p><p>​<em>);</em></p></li><li><p>查看表结构：<em>desc 表名；</em></p></li><li><p>查看服务器版本</p><ul><li><p>方式一：</p><blockquote><p>登录到 mysql 服务端后，select version ();</p></blockquote></li><li><p>方式二：</p><blockquote><p>windows cmd 出入<em> mysql --version</em> 或<em> mysql -V</em></p></blockquote></li></ul></li></ul><h2 id="mysql的语法规范"><a class="markdownIt-Anchor" href="#mysql的语法规范">#</a> MySQL 的语法规范</h2><ul><li><p><em><strong>不区分</strong></em>大小写，但建议关键字大写，表名和列名小写</p></li><li><p>每条命令最好用分号结尾</p></li><li><p>每条命令根据需要，可以进行<em><strong>缩进或换行</strong></em></p></li><li><p>注释</p><blockquote><p>单行注释：# 注释文字</p><p>单行注释：-- 注释文字（注意‘–’后必须有空格）</p><p>多行注释：/* 注释文字 */</p></blockquote></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>面向Offer学习记录</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>学习笔记</tag>
+      
+      <tag>MySQL</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>JavaSE</title>
     <link href="/2021/11/04/JavaSE%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     <url>/2021/11/04/JavaSE%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
