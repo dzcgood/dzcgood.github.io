@@ -24,7 +24,7 @@
 <meta property="og:description" content="这是学习MySQL基础的时候敲的代码，记录一下">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-11-05T16:09:32.000Z">
-<meta property="article:modified_time" content="2021-11-09T16:12:49.514Z">
+<meta property="article:modified_time" content="2021-11-10T17:48:00.909Z">
 <meta property="article:author" content="DzcGood">
 <meta property="article:tag" content="MySQL">
 <meta property="article:tag" content="学习笔记">
@@ -214,7 +214,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      10k 字
+      11k 字
     </span>
   
 
@@ -223,7 +223,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      32 分钟
+      35 分钟
     </span>
   
 
@@ -264,7 +264,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：8 分钟前
+                  本文最后更新于：1 分钟前
                 
               </p>
             
@@ -457,9 +457,52 @@
 </li>
 </ul>
 <h4 id="等值连接"><a class="markdownIt-Anchor" href="#等值连接">#</a> 等值连接</h4>
-<figure class="highlight sql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs sql"># 等值连接<br># 例：查询女生对应的男生<br><span class="hljs-keyword">SELECT</span> <span class="hljs-string">&#x27;name&#x27;</span>, boy_name <span class="hljs-keyword">FROM</span> girls, boys <span class="hljs-keyword">WHERE</span> girls.boyfriend_id <span class="hljs-operator">=</span> boys.id;<br># 例：查询员工名和对应的部门名<br><span class="hljs-keyword">SELECT</span> last_name, department_name <span class="hljs-keyword">FROM</span> employees, departments <br><span class="hljs-keyword">WHERE</span> employees.department_id <span class="hljs-operator">=</span> departmens.departmen_id;<br># 为表起别名，起了别名后，就不能使用原来的表名了<br># 查询员工名、工种号、工种名<br><span class="hljs-keyword">SELECT</span> last_name, e.job_id <span class="hljs-comment">/*因为两个表都有job_id字段，所以要指明*/</span>, job_title <span class="hljs-keyword">FROM</span> employees <span class="hljs-keyword">AS</span> e, jobs <span class="hljs-keyword">AS</span> j <span class="hljs-keyword">WHERE</span> e.job_id <span class="hljs-operator">=</span> j.job_id;<br># 配合筛选<br># 查询有奖金的员工名、部门名<br><span class="hljs-keyword">SELECT</span> last_name, department_name <span class="hljs-keyword">FROM</span> employees <span class="hljs-keyword">AS</span> e, dempartments <span class="hljs-keyword">AS</span> d<br><span class="hljs-keyword">WHERE</span> e.<span class="hljs-string">&#x27;deparrment_id&#x27;</span> <span class="hljs-operator">=</span> d.<span class="hljs-string">&#x27;departmen_id&#x27;</span> <span class="hljs-keyword">AND</span> e.commission_id <span class="hljs-keyword">IS</span> <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span>;<br># 配合分组<br># 查询每个城市的部门个数<br><span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">COUNT</span>(<span class="hljs-operator">*</span>), city <span class="hljs-keyword">FROM</span> departments, locations <span class="hljs-keyword">WHERE</span> departments.location_id <span class="hljs-operator">=</span> locations.id <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> city;<br># 查询有奖金的每个部门的部门名和部门的领导编号和该部门的最低工资<br><span class="hljs-keyword">SELECT</span> department_name, manager_id, <span class="hljs-built_in">MIN</span>(salary) <span class="hljs-keyword">FROM</span> departments, employees<br><span class="hljs-keyword">WHERE</span> departments.manager_id <span class="hljs-operator">=</span> employees.manager_id <span class="hljs-keyword">AND</span> commissioin_id <span class="hljs-keyword">IS</span> <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span><br><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> department_name;<br># 配合排序<br># 查询每个工种的工种名和员工个数，按员工个数降序<br><span class="hljs-keyword">SELECT</span> job_title, <span class="hljs-built_in">COUNT</span>(<span class="hljs-operator">*</span>) <span class="hljs-keyword">FROM</span> employees, jobs <span class="hljs-keyword">WHERE</span> emoloyees.job_id <span class="hljs-operator">=</span> jobs.job_id <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> job_title <span class="hljs-keyword">DESC</span>;<br># 多表连接<br># 例：查询员工名，部门名和所在城市，按员工名降序排序<br><span class="hljs-keyword">SELECT</span> last_name, department_name, city<br><span class="hljs-keyword">FROM</span> employees e, departments d, locations l<br><span class="hljs-keyword">WHERE</span> e.department_id <span class="hljs-operator">=</span> d.department_id <span class="hljs-keyword">AND</span> d.location_id <span class="hljs-operator">=</span> l.location_id <br><span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> last_name <span class="hljs-keyword">DESC</span><br></code></pre></div></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs sql"># 等值连接<br># 例：查询女生对应的男生<br><span class="hljs-keyword">SELECT</span> <span class="hljs-string">&#x27;name&#x27;</span>, boy_name <span class="hljs-keyword">FROM</span> girls, boys <span class="hljs-keyword">WHERE</span> girls.boyfriend_id <span class="hljs-operator">=</span> boys.id;<br># 例：查询员工名和对应的部门名<br><span class="hljs-keyword">SELECT</span> last_name, department_name <span class="hljs-keyword">FROM</span> employees, departments <br><span class="hljs-keyword">WHERE</span> employees.department_id <span class="hljs-operator">=</span> departmens.departmen_id;<br># 为表起别名，起了别名后，就不能使用原来的表名了<br># 查询员工名、工种号、工种名<br><span class="hljs-keyword">SELECT</span> last_name, e.job_id <span class="hljs-comment">/*因为两个表都有job_id字段，所以要指明*/</span>, job_title <span class="hljs-keyword">FROM</span> employees <span class="hljs-keyword">AS</span> e, jobs <span class="hljs-keyword">AS</span> j <span class="hljs-keyword">WHERE</span> e.job_id <span class="hljs-operator">=</span> j.job_id;<br># 配合筛选<br># 查询有奖金的员工名、部门名<br><span class="hljs-keyword">SELECT</span> last_name, department_name <span class="hljs-keyword">FROM</span> employees <span class="hljs-keyword">AS</span> e, dempartments <span class="hljs-keyword">AS</span> d<br><span class="hljs-keyword">WHERE</span> e.<span class="hljs-string">&#x27;deparrment_id&#x27;</span> <span class="hljs-operator">=</span> d.<span class="hljs-string">&#x27;departmen_id&#x27;</span> <span class="hljs-keyword">AND</span> e.commission_id <span class="hljs-keyword">IS</span> <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span>;<br># 配合分组<br># 查询每个城市的部门个数<br><span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">COUNT</span>(<span class="hljs-operator">*</span>), city <span class="hljs-keyword">FROM</span> departments, locations <span class="hljs-keyword">WHERE</span> departments.location_id <span class="hljs-operator">=</span> locations.id <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> city;<br># 查询有奖金的每个部门的部门名和部门的领导编号和该部门的最低工资<br><span class="hljs-keyword">SELECT</span> department_name, manager_id, <span class="hljs-built_in">MIN</span>(salary) <span class="hljs-keyword">FROM</span> departments, employees<br><span class="hljs-keyword">WHERE</span> departments.manager_id <span class="hljs-operator">=</span> employees.manager_id <span class="hljs-keyword">AND</span> commissioin_id <span class="hljs-keyword">IS</span> <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span><br><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> department_name;<br># 配合排序<br># 查询每个工种的工种名和员工个数，按员工个数降序<br><span class="hljs-keyword">SELECT</span> job_title, <span class="hljs-built_in">COUNT</span>(<span class="hljs-operator">*</span>) <span class="hljs-keyword">FROM</span> employees, jobs <span class="hljs-keyword">WHERE</span> emoloyees.job_id <span class="hljs-operator">=</span> jobs.job_id <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> job_title <span class="hljs-keyword">DESC</span>;<br># 多表连接<br># 例：查询员工名，部门名和所在城市，按员工名降序排序<br><span class="hljs-keyword">SELECT</span> last_name, department_name, city<br><span class="hljs-keyword">FROM</span> employees e, departments d, locations l<br><span class="hljs-keyword">WHERE</span> e.department_id <span class="hljs-operator">=</span> d.department_id <span class="hljs-keyword">AND</span> d.location_id <span class="hljs-operator">=</span> l.location_id <br><span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> last_name <span class="hljs-keyword">DESC</span>;<br></code></pre></div></td></tr></table></figure>
 <h4 id="非等值连接"><a class="markdownIt-Anchor" href="#非等值连接">#</a> 非等值连接</h4>
-<figure class="highlight sql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs sql"><br></code></pre></div></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs sql"># 非等值连接<br># 例：查询员工的工资和工资等级<br><span class="hljs-keyword">SELECT</span> salary, grade_level <span class="hljs-keyword">FROM</span> employees, job_grades <br><span class="hljs-keyword">WHERE</span> employees.salary <span class="hljs-keyword">BETWEEN</span> job_grades.lowest_salary <span class="hljs-keyword">AND</span> job_grades.highest_salary;<br></code></pre></div></td></tr></table></figure>
+<h4 id="自连接"><a class="markdownIt-Anchor" href="#自连接">#</a> 自连接</h4>
+<ul>
+<li>使用自连接<strong>必须起别名</strong></li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs sql"># 例：查询员工名和其上级的名字<br><span class="hljs-keyword">SELECT</span> A.last_name, B.last_name <span class="hljs-keyword">FROM</span> employees <span class="hljs-keyword">AS</span> A, employees <span class="hljs-keyword">AS</span> B<br><span class="hljs-keyword">WHERE</span> A.manager_id <span class="hljs-operator">=</span> B.id;<br></code></pre></div></td></tr></table></figure>
+<h4 id="sql99语法"><a class="markdownIt-Anchor" href="#sql99语法">#</a> SQL99 语法</h4>
+<ul>
+<li>
+<p>语法：</p>
+<blockquote>
+<p>SELECT 查询列表</p>
+<p>FROM 表 1 别名 [连接类型] JOIN 表 2 别名</p>
+<p>ON 连接条件</p>
+<p>[WHERE 子句]</p>
+<p>[ GROUP BY 子句</p>
+<p>[HAVING 子句] ]</p>
+<p>[ORDER BY 子句]</p>
+</blockquote>
+</li>
+<li>
+<p>分类</p>
+<ul>
+<li>
+<p>内连接：INNER</p>
+</li>
+<li>
+<p>外连接</p>
+<ul>
+<li>左外连接：LEFT [OUTER]</li>
+<li>右外连接：RIGHT [OUTER]</li>
+<li>全外连接：FULL [OUTER]</li>
+</ul>
+</li>
+<li>
+<p>交叉连接：CROSS</p>
+</li>
+</ul>
+</li>
+<li>
+<p>注意：如果有多个连接，则必须每个连接后面跟一个 ON 子句，不能写在一起</p>
+</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs sql"><span class="hljs-comment">-- 内连接 -- </span><br># 等值连接<br># 例：查询员工名、部门名<br><span class="hljs-keyword">SELECT</span> last_name, department_name <br><span class="hljs-keyword">FROM</span> employees <span class="hljs-keyword">AS</span> e <br><span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> departmens <span class="hljs-keyword">AS</span> d<br><span class="hljs-keyword">ON</span> e.department_id <span class="hljs-operator">=</span> d.department_id;<br># 非等值连接<br># 例：查询员工的工资级别，按工资从小到大排序<br><span class="hljs-keyword">SELECT</span> salary,grade_level<br><span class="hljs-keyword">FROM</span> employees <span class="hljs-keyword">AS</span> e<br><span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> job_grades <span class="hljs-keyword">AS</span> g<br><span class="hljs-keyword">ON</span> e.salary <span class="hljs-keyword">BETWEEN</span> g.lowest_sal <span class="hljs-keyword">AND</span> g.highest_sal<br><span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> salary <span class="hljs-keyword">ASC</span>;<br># 自连接<br># 例：查询员工名和他领导的名字<br><span class="hljs-keyword">SELECT</span> e.last_name, m.last_name<br><span class="hljs-keyword">FROM</span> employees e<br><span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> employees m<br><span class="hljs-keyword">ON</span> e.manager_id <span class="hljs-operator">=</span> m.employee_id;<br></code></pre></div></td></tr></table></figure>
 <h2 id="dml语言"><a class="markdownIt-Anchor" href="#dml语言">#</a> DML 语言</h2>
 <h2 id="ddl语言"><a class="markdownIt-Anchor" href="#ddl语言">#</a> DDL 语言</h2>
 <h2 id="tcl语言"><a class="markdownIt-Anchor" href="#tcl语言">#</a> TCL 语言</h2>
