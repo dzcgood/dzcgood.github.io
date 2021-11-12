@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://gitee.com/dzcgood/img-bed/raw/master/img/image-20211111143515166.png">
 <meta property="article:published_time" content="2021-11-05T16:09:32.000Z">
-<meta property="article:modified_time" content="2021-11-11T17:13:49.231Z">
+<meta property="article:modified_time" content="2021-11-12T11:50:28.488Z">
 <meta property="article:author" content="DzcGood">
 <meta property="article:tag" content="MySQL">
 <meta property="article:tag" content="学习笔记">
@@ -216,7 +216,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      15k 字
+      19k 字
     </span>
   
 
@@ -225,7 +225,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      48 分钟
+      58 分钟
     </span>
   
 
@@ -266,7 +266,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：几秒前
+                  本文最后更新于：1 小时前
                 
               </p>
             
@@ -521,7 +521,7 @@
 <p><img src="https://gitee.com/dzcgood/img-bed/raw/master/img/image-20211111143515166.png" srcset="/img/loading.gif" lazyload alt="外连接对比"></p>
 </li>
 </ul>
-<figure class="highlight sql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs sql"># 外连接：用于查询一个表中有，另一个表中没有的情况<br># 例：查询男朋友不在男神表中的女神名<br><span class="hljs-keyword">SELECT</span> grils.name, boys.name<br><span class="hljs-keyword">FROM</span> grils<br><span class="hljs-keyword">LEFT</span> <span class="hljs-keyword">OUTER</span> <span class="hljs-keyword">JOIN</span> boys<br><span class="hljs-keyword">ON</span> girls.boyfriend_id <span class="hljs-operator">=</span> boys.id<br><span class="hljs-keyword">WHERE</span> boys.id <span class="hljs-keyword">IS</span> <span class="hljs-keyword">NULL</span>;<br># 例：查询哪个部门没有员工<br><span class="hljs-keyword">SELECT</span> department_name, employee_id<br><span class="hljs-keyword">FROM</span> departments<br><span class="hljs-keyword">LEFT</span> <span class="hljs-keyword">OUTER</span> <span class="hljs-keyword">JOIN</span> employees<br><span class="hljs-keyword">ON</span> departments.department_id <span class="hljs-operator">=</span> employees.department_id<br><span class="hljs-keyword">WHERE</span> employee_id <span class="hljs-keyword">IS</span> <span class="hljs-keyword">NULL</span>;<br># 全外连接 <span class="hljs-operator">=</span> 内连接 <span class="hljs-operator">+</span> 表<span class="hljs-number">1</span>中有表<span class="hljs-number">1</span>中没有 <span class="hljs-operator">+</span> 表<span class="hljs-number">1</span>中没有表<span class="hljs-number">2</span>有<br># 交叉连接：其实就是笛卡尔积<br><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <br><span class="hljs-keyword">FROM</span> employees<br><span class="hljs-keyword">CROSS</span> <span class="hljs-keyword">JOIN</span> departments;<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs sql"># 外连接：用于查询一个表中有，另一个表中没有的情况<br># 例：查询男朋友不在男神表中的女神名<br><span class="hljs-keyword">SELECT</span> grils.name, boys.name<br><span class="hljs-keyword">FROM</span> grils<br><span class="hljs-keyword">LEFT</span> <span class="hljs-keyword">OUTER</span> <span class="hljs-keyword">JOIN</span> boys<br><span class="hljs-keyword">ON</span> girls.boyfriend_id <span class="hljs-operator">=</span> boys.id<br><span class="hljs-keyword">WHERE</span> boys.id <span class="hljs-keyword">IS</span> <span class="hljs-keyword">NULL</span>;<br># 例：查询哪个部门没有员工<br><span class="hljs-keyword">SELECT</span> department_name, employee_id<br><span class="hljs-keyword">FROM</span> departments<br><span class="hljs-keyword">LEFT</span> <span class="hljs-keyword">OUTER</span> <span class="hljs-keyword">JOIN</span> employees<br><span class="hljs-keyword">ON</span> departments.department_id <span class="hljs-operator">=</span> employees.department_id<br><span class="hljs-keyword">WHERE</span> employee_id <span class="hljs-keyword">IS</span> <span class="hljs-keyword">NULL</span>;<br># 全外连接 <span class="hljs-operator">=</span> 内连接 <span class="hljs-operator">+</span> 表<span class="hljs-number">1</span>中有表<span class="hljs-number">2</span>中没有 <span class="hljs-operator">+</span> 表<span class="hljs-number">1</span>中没有表<span class="hljs-number">2</span>有<br># 交叉连接：其实就是笛卡尔积<br><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <br><span class="hljs-keyword">FROM</span> employees<br><span class="hljs-keyword">CROSS</span> <span class="hljs-keyword">JOIN</span> departments;<br></code></pre></div></td></tr></table></figure>
 <h3 id="子查询"><a class="markdownIt-Anchor" href="#子查询">#</a> 子查询</h3>
 <ul>
 <li>
@@ -594,7 +594,167 @@
 </ul>
 <figure class="highlight sql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs sql"># 例：查询部门编号<span class="hljs-operator">&gt;</span><span class="hljs-number">90</span>或邮箱包含a的员工信息<br><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> employees <span class="hljs-keyword">WHERE</span> email <span class="hljs-keyword">LIKE</span> <span class="hljs-string">&#x27;%a%&#x27;</span> <br><span class="hljs-keyword">UNION</span><br><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> employees <span class="hljs-keyword">WHERE</span> department_id <span class="hljs-operator">&gt;</span> <span class="hljs-number">90</span>;<br># 查询中国用户表中的男性用户信息和外国用户表中的女性用户信息<br><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> t_ca <span class="hljs-keyword">WHERE</span> gender <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;male&#x27;</span><br><span class="hljs-keyword">UNION</span> <br><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> t_ua <span class="hljs-keyword">WHERE</span> gender <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;female&#x27;</span>;<br></code></pre></div></td></tr></table></figure>
 <h2 id="dml语言"><a class="markdownIt-Anchor" href="#dml语言">#</a> DML 语言</h2>
+<h3 id="插入语句"><a class="markdownIt-Anchor" href="#插入语句">#</a> 插入语句</h3>
+<ul>
+<li>
+<p>语法：</p>
+<ul>
+<li>方式一：INSERT INTO 表名 (字段名 1, 字段名 2, …) VALUES (值 1，值 2，……);</li>
+<li>方式二：INSERT INTO 表名 SET 列名 = 值，列名 = 值，……</li>
+</ul>
+</li>
+<li>
+<p>注意</p>
+<ul>
+<li>插入的值的类型必须与列的类型一致或兼容（顺序、个数必须相同，如果某字段值为空，那就写 NULL）</li>
+<li>可以为 NULL 的字段值，插入的时候可以为 NULL</li>
+<li>不可以为 NULL 的列，必须有值</li>
+<li>可以省略列名，但默认是所有插入所有列，且顺序和表中一致</li>
+</ul>
+</li>
+<li>
+<p>方式一支持一次插入多行</p>
+<figure class="highlight sql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> girls(id, name, gender, birthday, phone, photo, boyfriend_id)<br><span class="hljs-keyword">VALUES</span>(<span class="hljs-number">13</span>,<span class="hljs-string">&#x27;Angela&#x27;</span>, <span class="hljs-string">&#x27;girl&#x27;</span>, <span class="hljs-string">&#x27;2001-02-12&#x27;</span>, <span class="hljs-string">&#x27;13100000000&#x27;</span>, <span class="hljs-keyword">NULL</span>, <span class="hljs-number">2</span>),<br>	(<span class="hljs-number">14</span>,<span class="hljs-string">&#x27;Angela1&#x27;</span>, <span class="hljs-string">&#x27;girl&#x27;</span>, <span class="hljs-string">&#x27;2001-03-12&#x27;</span>, <span class="hljs-string">&#x27;13100000020&#x27;</span>, <span class="hljs-keyword">NULL</span>, <span class="hljs-number">4</span>),<br>	(<span class="hljs-number">15</span>,<span class="hljs-string">&#x27;Angela1&#x27;</span>, <span class="hljs-string">&#x27;girl&#x27;</span>, <span class="hljs-string">&#x27;2001-04-12&#x27;</span>, <span class="hljs-string">&#x27;13100000400&#x27;</span>, <span class="hljs-keyword">NULL</span>, <span class="hljs-number">6</span>);<br></code></pre></div></td></tr></table></figure>
+</li>
+<li>
+<p>方式一支持子查询</p>
+<figure class="highlight sql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> girls(id, name, phone)<br><span class="hljs-keyword">SELECT</span> id, boy_name, phone_number # 这里指把子查询的结果插入到表中，这样可以实现一次性插入多行<br><span class="hljs-keyword">FROM</span> boys<br><span class="hljs-keyword">WHERE</span> id <span class="hljs-operator">&lt;</span> <span class="hljs-number">3</span>;<br></code></pre></div></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="举例-4"><a class="markdownIt-Anchor" href="#举例-4">#</a> 举例</h4>
+<figure class="highlight sql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs sql"># 若photo值可以为<span class="hljs-keyword">NULL</span>，则以下<span class="hljs-number">4</span>种方式等价<br># ①<br><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> girls(id, name, gender, birthday, phone, photo, boyfriend_id)<br><span class="hljs-keyword">VALUES</span>(<span class="hljs-number">13</span>,<span class="hljs-string">&#x27;Angela&#x27;</span>, <span class="hljs-string">&#x27;girl&#x27;</span>, <span class="hljs-string">&#x27;2001-02-12&#x27;</span>, <span class="hljs-string">&#x27;13100000000&#x27;</span>, <span class="hljs-keyword">NULL</span>, <span class="hljs-number">2</span>);<br># ②<br><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> girls<br><span class="hljs-keyword">VALUES</span>(<span class="hljs-number">13</span>,<span class="hljs-string">&#x27;Angela&#x27;</span>, <span class="hljs-string">&#x27;girl&#x27;</span>, <span class="hljs-string">&#x27;2001-02-12&#x27;</span>, <span class="hljs-string">&#x27;13100000000&#x27;</span>, <span class="hljs-keyword">NULL</span>, <span class="hljs-number">2</span>);<br><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> girls(id, name, gender, birthday, phone, boyfriend_id)<br># ③<br><span class="hljs-keyword">VALUES</span>(<span class="hljs-number">13</span>,<span class="hljs-string">&#x27;Angela&#x27;</span>, <span class="hljs-string">&#x27;girl&#x27;</span>, <span class="hljs-string">&#x27;2001-02-12&#x27;</span>, <span class="hljs-string">&#x27;13100000000&#x27;</span>, <span class="hljs-number">2</span>);<br># ④<br><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> girls<br><span class="hljs-keyword">SET</span> name <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;Angela&#x27;</span>,<br>	id <span class="hljs-operator">=</span> <span class="hljs-number">13</span>,<br>	gender <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;girl&#x27;</span><br>	birthday <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;2001-02-12&#x27;</span><br>	phone <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;13100000000&#x27;</span><br>	boyfriend_id <span class="hljs-operator">=</span> <span class="hljs-number">2</span>;<br></code></pre></div></td></tr></table></figure>
+<h3 id="修改语句"><a class="markdownIt-Anchor" href="#修改语句">#</a> 修改语句</h3>
+<p>#### 修改单表记录</p>
+<ul>
+<li>语法：UPDATE 表名 SET 字段名 1 = 新值 1，字段名 2 = 新值 2，…… WHERE 筛选条件</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs sql"># 例<span class="hljs-number">1</span>：修改girls表中姓唐的女生的电话为<span class="hljs-number">13899999999</span><br>UPDATE girls<br><span class="hljs-keyword">SET</span> phone <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;13899999999&#x27;</span><br><span class="hljs-keyword">WHERE</span> name <span class="hljs-keyword">LIKE</span> <span class="hljs-string">&#x27;唐%&#x27;</span>;<br># 例<span class="hljs-number">2</span>：修改boys表中id为<span class="hljs-number">2</span>的人名称为张飞，魅力值<span class="hljs-number">10</span><br>UPDATE boys<br><span class="hljs-keyword">SET</span> boy_name <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;张飞&#x27;</span>,<br>	usercp <span class="hljs-operator">=</span> <span class="hljs-number">10</span><br><span class="hljs-keyword">WHERE</span> id <span class="hljs-operator">=</span> <span class="hljs-number">2</span>;	<br></code></pre></div></td></tr></table></figure>
+<h4 id="修改多表记录"><a class="markdownIt-Anchor" href="#修改多表记录">#</a> 修改多表记录</h4>
+<ul>
+<li>语法：
+<ul>
+<li>sql92：UPDATE 表 1 别名，表 2 别名 SET 列 = 值，… WHERE 连接条件 AND 筛选条件；</li>
+<li>sql99：UPDATE 表 1 别名 连接类型 表 2 别名 ON 连接条件 SET 列 = 值，… WHERE 连接条件 AND 筛选条件；</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs sql"># 例<span class="hljs-number">1</span>：修改张无忌的女朋友们的手机号为<span class="hljs-number">114</span><br>UPDATE boys b<br><span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> girls g<br><span class="hljs-keyword">ON</span> b.id <span class="hljs-operator">=</span> g.boyfriend_id<br><span class="hljs-keyword">SET</span> g.phone <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;114&#x27;</span><br><span class="hljs-keyword">WHERE</span> b.name <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;张无忌&#x27;</span>;<br># 例<span class="hljs-number">2</span>：修改没有男朋友的女生的男朋友编号为<span class="hljs-number">2</span><br>UPDATE girls g<br><span class="hljs-keyword">LEFT</span> <span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> boys b<br><span class="hljs-keyword">ON</span> g.boyfriend_id <span class="hljs-operator">=</span> b.id<br><span class="hljs-keyword">SET</span> g.boyfriend_id <span class="hljs-operator">=</span> <span class="hljs-number">2</span><br><span class="hljs-keyword">WHERE</span> g.boyfriend_id <span class="hljs-keyword">IS</span> <span class="hljs-keyword">NULL</span>;<br></code></pre></div></td></tr></table></figure>
+<h3 id="删除语句"><a class="markdownIt-Anchor" href="#删除语句">#</a> 删除语句</h3>
+<ul>
+<li>
+<p>语法</p>
+<ul>
+<li>方式一：DELETE 要删的表名 FROM 表名 WHERE 筛选条件</li>
+<li>方式二：TRUNCATE TABLE 表名 **（删除整张表）**</li>
+</ul>
+</li>
+<li>
+<p>假如要删除的表中有自增长列，用 delete 删除后，再插入数据，自增长的列从断点开始，而 TRUNCATE 删除后，再插入数据，自增长的列从 1 开始</p>
+</li>
+<li>
+<p>DELETE 有返回值（比如：共 3 行受影响）；TRUNCATE 没有返回值（会显示：共 0 行受影响）</p>
+</li>
+<li>
+<p>TRUNCATE 删除<strong>不能回滚</strong>，DELETE 删除可以回滚</p>
+</li>
+</ul>
+<h4 id="单表删除"><a class="markdownIt-Anchor" href="#单表删除">#</a> 单表删除</h4>
+<figure class="highlight sql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs sql"># 删除手机号以<span class="hljs-number">9</span>结尾的女生信息<br><span class="hljs-keyword">DELETE</span> <span class="hljs-keyword">FROM</span> girls<br><span class="hljs-keyword">WHERE</span> phone <span class="hljs-keyword">LIKE</span> <span class="hljs-string">&#x27;%9&#x27;</span>;<br></code></pre></div></td></tr></table></figure>
+<h4 id="多表删除"><a class="markdownIt-Anchor" href="#多表删除">#</a> 多表删除</h4>
+<figure class="highlight sql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs sql"># 删除张无忌的女朋友的信息<br><span class="hljs-keyword">DELETE</span> girls # 这里只会删除girls表中的数据<br># <span class="hljs-keyword">DELETE</span> girls， boys # 这样就会删除girls和boys两个表中的信息<br><span class="hljs-keyword">FROM</span> girls <br><span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> boys<br><span class="hljs-keyword">ON</span> boys.id <span class="hljs-operator">=</span> girls.boyfriend_id<br><span class="hljs-keyword">WHERE</span> boys.name <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;张无忌&#x27;</span><br><br># 删除黄晓明的信息和他女朋友的信息<br><span class="hljs-keyword">DELETE</span> girls, boys # 两个表中的信息都会被删除<br><span class="hljs-keyword">FROM</span> boys<br><span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> girls<br><span class="hljs-keyword">ON</span> boys.id <span class="hljs-operator">=</span> girls.boyfriend_id<br><span class="hljs-keyword">WHERE</span> boys.name <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;黄晓明&#x27;</span><br></code></pre></div></td></tr></table></figure>
 <h2 id="ddl语言"><a class="markdownIt-Anchor" href="#ddl语言">#</a> DDL 语言</h2>
+<h3 id="库管理"><a class="markdownIt-Anchor" href="#库管理">#</a> 库管理</h3>
+<ul>
+<li>
+<p>库的创建</p>
+<ul>
+<li>语法：CREATE DATABASE [IF NOT EXISTS] 库名；</li>
+</ul>
+</li>
+<li>
+<p>更改库的字符集</p>
+<ul>
+<li>语法：ALTER DATABASE 库名 CHARACTER SET 字符集名</li>
+</ul>
+</li>
+<li>
+<p>库的删除</p>
+<ul>
+<li>语法：DROP DATABASE [IF EXISTS] 库名</li>
+</ul>
+</li>
+</ul>
+<h3 id="表管理"><a class="markdownIt-Anchor" href="#表管理">#</a> 表管理</h3>
+<h4 id="创建create"><a class="markdownIt-Anchor" href="#创建create">#</a> 创建：CREATE</h4>
+<ul>
+<li>
+<p>语法：</p>
+<ul>
+<li>
+<p>CREATE TABLE [IF NOT EXISTS] 表名 (</p>
+<p>​	字段名 字段类型 [长度 约束])，</p>
+<p>​	字段名 字段类型 [长度 约束])，</p>
+<p>​	字段名 字段类型 [长度 约束])，</p>
+<p>​	……</p>
+<p>);</p>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs sql"># 创建表book<br><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> book(<br>	id <span class="hljs-type">INT</span>, # 书的编号<br>    `name` <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">20</span>), # 书名<br>    price <span class="hljs-keyword">DOUBLE</span>, # 价格<br>    author_id <span class="hljs-type">INT</span> # 作者编号<br>);<br></code></pre></div></td></tr></table></figure>
+<h4 id="修改alter"><a class="markdownIt-Anchor" href="#修改alter">#</a> 修改：ALTER</h4>
+<ul>
+<li>
+<p>修改列名</p>
+<ul>
+<li>
+<p>ALTER TABLE 表名 CHANGE COLUMN 原名 新名 类型；</p>
+</li>
+<li>
+<figure class="highlight sql"><figcaption data-lang="SQL"></figcaption><table><tr><td data-num="1"></td><td><div class="hljs code-wrapper"><pre><span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> books CHANGE <span class="token keyword">COLUMN</span> author_id author <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></div></td></tr><tr><td data-num="2"></td><td><div class="hljs code-wrapper"><pre><span class="token operator">&lt;</span><span class="token operator">!</span><span class="token comment">--code￼29--></span></pre></div></td></tr></table></figure></li>
+</ul>
+</li>
+<li>
+<p>添加新列</p>
+<ul>
+<li>
+<p>ALTER TABLE 表名 ADD COLUMN 列名 类型；</p>
+</li>
+<li>
+<figure class="highlight sql"><figcaption data-lang="SQL"></figcaption><table><tr><td data-num="1"></td><td><div class="hljs code-wrapper"><pre><span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> books <span class="token keyword">ADD</span> <span class="token keyword">COLUMN</span> publish_time <span class="token keyword">DATETIME</span><span class="token punctuation">;</span></pre></div></td></tr><tr><td data-num="2"></td><td><div class="hljs code-wrapper"><pre><span class="token operator">&lt;</span><span class="token operator">!</span><span class="token comment">--code￼30--></span></pre></div></td></tr></table></figure></li>
+</ul>
+</li>
+<li>
+<p>修改表名</p>
+<ul>
+<li>
+<p>ALTER TABLE 表名 RENAME TO 新名字；</p>
+</li>
+<li>
+<figure class="highlight sql"><figcaption data-lang="SQL"></figcaption><table><tr><td data-num="1"></td><td><div class="hljs code-wrapper"><pre><span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> books <span class="token keyword">RENAME</span> <span class="token keyword">TO</span> my_books<span class="token punctuation">;</span></pre></div></td></tr><tr><td data-num="2"></td><td><div class="hljs code-wrapper"><pre><span class="token operator">&lt;</span><span class="token operator">!</span><span class="token comment">--code￼31--></span></pre></div></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h4 id="复制表"><a class="markdownIt-Anchor" href="#复制表">#</a> 复制表</h4>
+<ul>
+<li>
+<p>仅仅复制表的结构</p>
+<ul>
+<li>
+<p>CREATE TABLE 表名 LIKE 源表名；</p>
+</li>
+<li>
+<figure class="highlight sql"><figcaption data-lang="SQL"></figcaption><table><tr><td data-num="1"></td><td><div class="hljs code-wrapper"><pre><span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> book_copy <span class="token operator">LIKE</span> books<span class="token punctuation">;</span></pre></div></td></tr><tr><td data-num="2"></td><td><div class="hljs code-wrapper"><pre><span class="token operator">&lt;</span><span class="token operator">!</span><span class="token comment">--code￼32--></span></pre></div></td></tr></table></figure></li>
+</ul>
+</li>
+<li>
+<p>仅仅复制表的部分字段</p>
+<ul>
+<li>
+<figure class="highlight sql"><figcaption data-lang="SQL"></figcaption><table><tr><td data-num="1"></td><td><div class="hljs code-wrapper"><pre><span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> books_copy <span class="token operator">LIKE</span> books</pre></div></td></tr><tr><td data-num="2"></td><td><div class="hljs code-wrapper"><pre><span class="token keyword">SELECT</span> id<span class="token punctuation">,</span> author_id</pre></div></td></tr><tr><td data-num="3"></td><td><div class="hljs code-wrapper"><pre><span class="token keyword">FROM</span> books</pre></div></td></tr><tr><td data-num="4"></td><td><div class="hljs code-wrapper"><pre><span class="token keyword">WHERE</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment"># 筛选条件永远为 false，所以最后复制过去的只有 id 和 author_id 两个字段</span></pre></div></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
 <h2 id="tcl语言"><a class="markdownIt-Anchor" href="#tcl语言">#</a> TCL 语言</h2>
 <h2 id="视图"><a class="markdownIt-Anchor" href="#视图">#</a> 视图</h2>
 <h2 id="存储过程和函数"><a class="markdownIt-Anchor" href="#存储过程和函数">#</a> 存储过程和函数</h2>
