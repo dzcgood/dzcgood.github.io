@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://gitee.com/dzcgood/img-bed/raw/master/img/image-20211111143515166.png">
 <meta property="article:published_time" content="2021-11-05T16:09:32.000Z">
-<meta property="article:modified_time" content="2021-11-12T11:50:28.488Z">
+<meta property="article:modified_time" content="2021-11-13T01:45:53.754Z">
 <meta property="article:author" content="DzcGood">
 <meta property="article:tag" content="MySQL">
 <meta property="article:tag" content="学习笔记">
@@ -225,7 +225,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      58 分钟
+      59 分钟
     </span>
   
 
@@ -266,7 +266,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：1 小时前
+                  本文最后更新于：2 天前
                 
               </p>
             
@@ -751,9 +751,39 @@
 <p>仅仅复制表的部分字段</p>
 <ul>
 <li>
-<figure class="highlight sql"><figcaption data-lang="SQL"></figcaption><table><tr><td data-num="1"></td><td><div class="hljs code-wrapper"><pre><span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> books_copy <span class="token operator">LIKE</span> books</pre></div></td></tr><tr><td data-num="2"></td><td><div class="hljs code-wrapper"><pre><span class="token keyword">SELECT</span> id<span class="token punctuation">,</span> author_id</pre></div></td></tr><tr><td data-num="3"></td><td><div class="hljs code-wrapper"><pre><span class="token keyword">FROM</span> books</pre></div></td></tr><tr><td data-num="4"></td><td><div class="hljs code-wrapper"><pre><span class="token keyword">WHERE</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment"># 筛选条件永远为 false，所以最后复制过去的只有 id 和 author_id 两个字段</span></pre></div></td></tr></table></figure></li>
+<figure class="highlight sql"><figcaption data-lang="SQL"></figcaption><table><tr><td data-num="1"></td><td><div class="hljs code-wrapper"><pre><span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> books_copy</pre></div></td></tr><tr><td data-num="2"></td><td><div class="hljs code-wrapper"><pre><span class="token keyword">SELECT</span> id<span class="token punctuation">,</span> author_id</pre></div></td></tr><tr><td data-num="3"></td><td><div class="hljs code-wrapper"><pre><span class="token keyword">FROM</span> books</pre></div></td></tr><tr><td data-num="4"></td><td><div class="hljs code-wrapper"><pre><span class="token keyword">WHERE</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment"># 筛选条件永远为 false，所以最后复制过去的只有 id 和 author_id 两个字段</span></pre></div></td></tr><tr><td data-num="5"></td><td><div class="hljs code-wrapper"><pre><span class="token operator">&lt;</span><span class="token operator">!</span><span class="token comment">--code￼33--></span></pre></div></td></tr></table></figure></li>
 </ul>
 </li>
+</ul>
+<h4 id="浮点数"><a class="markdownIt-Anchor" href="#浮点数">#</a> 浮点数</h4>
+<ul>
+<li>包括两种：float（4 字节），double（8 字节）</li>
+<li>写法：FLOAT (M, D), DOUBLE (M, D)</li>
+</ul>
+<h4 id="定点数"><a class="markdownIt-Anchor" href="#定点数">#</a> 定点数</h4>
+<ul>
+<li>
+<p>写法：DEC (M, D)</p>
+</li>
+<li>
+<p>DEC()</p>
+</li>
+<li>
+<p>浮点数</p>
+</li>
+<li>
+<p>char</p>
+</li>
+<li>
+<p>varchar</p>
+</li>
+<li>
+<p>test</p>
+</li>
+<li>
+<p>blob（较长的二进制数据）</p>
+</li>
+<li></li>
 </ul>
 <h2 id="tcl语言"><a class="markdownIt-Anchor" href="#tcl语言">#</a> TCL 语言</h2>
 <h2 id="视图"><a class="markdownIt-Anchor" href="#视图">#</a> 视图</h2>
@@ -793,6 +823,12 @@
                 <div class="post-prevnext">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2021/11/15/%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8%E4%B8%8E%E8%BF%9B%E7%A8%8B%E9%80%9A%E4%BF%A1/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">系统调用与进程通信</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
