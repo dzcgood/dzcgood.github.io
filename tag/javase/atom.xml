@@ -4,16 +4,16 @@
     <title>DzcGood • Posts by &#34;javase&#34; tag</title>
     <link href="http://example.com" />
     <updated>2021-11-04T14:21:51.000Z</updated>
-    <category term="Linux" />
-    <category term="学习笔记" />
     <category term="MySQL" />
-    <category term="JavaSE" />
-    <category term="leetcode" />
-    <category term="数组" />
-    <category term="二分查找" />
+    <category term="学习笔记" />
     <category term="编译原理" />
     <category term="SCNU-CS" />
     <category term="XLEX" />
+    <category term="leetcode" />
+    <category term="数组" />
+    <category term="二分查找" />
+    <category term="Linux" />
+    <category term="JavaSE" />
     <entry>
         <id>http://example.com/2021/11/04/JavaSE%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</id>
         <title>JavaSE</title>

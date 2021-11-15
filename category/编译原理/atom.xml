@@ -4,16 +4,16 @@
     <title>DzcGood • Posts by &#34;编译原理&#34; category</title>
     <link href="http://example.com" />
     <updated>2021-10-31T06:33:54.000Z</updated>
-    <category term="Linux" />
-    <category term="学习笔记" />
     <category term="MySQL" />
-    <category term="JavaSE" />
-    <category term="leetcode" />
-    <category term="数组" />
-    <category term="二分查找" />
+    <category term="学习笔记" />
     <category term="编译原理" />
     <category term="SCNU-CS" />
     <category term="XLEX" />
+    <category term="leetcode" />
+    <category term="数组" />
+    <category term="二分查找" />
+    <category term="Linux" />
+    <category term="JavaSE" />
     <entry>
         <id>http://example.com/2021/10/31/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E5%AE%9E%E9%AA%8C%E4%BA%8C-XLEX/</id>
         <title>编译原理实验二 XLEX</title>
