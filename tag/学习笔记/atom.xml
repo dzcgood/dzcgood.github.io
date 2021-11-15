@@ -4,8 +4,9 @@
     <title>DzcGood • Posts by &#34;学习笔记&#34; tag</title>
     <link href="http://example.com" />
     <updated>2021-11-15T02:07:24.000Z</updated>
-    <category term="MySQL" />
+    <category term="Linux" />
     <category term="学习笔记" />
+    <category term="MySQL" />
     <category term="JavaSE" />
     <category term="leetcode" />
     <category term="数组" />
@@ -13,7 +14,6 @@
     <category term="编译原理" />
     <category term="SCNU-CS" />
     <category term="XLEX" />
-    <category term="Linux" />
     <entry>
         <id>http://example.com/2021/11/15/%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8%E4%B8%8E%E8%BF%9B%E7%A8%8B%E9%80%9A%E4%BF%A1/</id>
         <title>系统调用与进程通信</title>
@@ -101,8 +101,8 @@
 &lt;p&gt;&lt;img src=&#34;https://gitee.com/dzcgood/img-bed/raw/master/img/image-20211115013923471.png&#34; alt=&#34;M1M2运行截图2&#34;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://gitee.com/dzcgood/img-bed/raw/master/img/image-20211115013953657.png&#34; alt=&#34;M1M2运行截图3&#34;&gt;&lt;/p&gt;
 </content>
-        <category term="学习笔记" />
         <category term="Linux" />
+        <category term="学习笔记" />
         <updated>2021-11-15T02:07:24.000Z</updated>
     </entry>
     <entry>
@@ -627,8 +627,8 @@
 &lt;h2 id=&#34;视图&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#视图&#34;&gt;#&lt;/a&gt; 视图&lt;/h2&gt;
 &lt;h2 id=&#34;存储过程和函数&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#存储过程和函数&#34;&gt;#&lt;/a&gt; 存储过程和函数&lt;/h2&gt;
 </content>
-        <category term="MySQL" />
         <category term="学习笔记" />
+        <category term="MySQL" />
         <updated>2021-11-05T16:09:32.000Z</updated>
     </entry>
     <entry>
