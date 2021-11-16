@@ -24,8 +24,9 @@
 <meta property="og:description" content="本大三菜狗开始学MySQL了">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://gitee.com/dzcgood/img-bed/raw/master/img/image-20211111143515166.png">
+<meta property="og:image" content="https://gitee.com/dzcgood/img-bed/raw/master/img/image-20211116224930803.png">
 <meta property="article:published_time" content="2021-11-05T16:09:32.000Z">
-<meta property="article:modified_time" content="2021-11-16T09:16:59.531Z">
+<meta property="article:modified_time" content="2021-11-16T18:24:49.139Z">
 <meta property="article:author" content="DzcGood">
 <meta property="article:tag" content="MySQL">
 <meta property="article:tag" content="学习笔记">
@@ -216,7 +217,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      22k 字
+      23k 字
     </span>
   
 
@@ -225,7 +226,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      70 分钟
+      73 分钟
     </span>
   
 
@@ -266,7 +267,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2 小时前
+                  本文最后更新于：几秒前
                 
               </p>
             
@@ -903,7 +904,86 @@
 <li>可以通过手动插入，设置起始值</li>
 </ul>
 <h2 id="tcl语言"><a class="markdownIt-Anchor" href="#tcl语言">#</a> TCL 语言</h2>
+<h3 id="事务"><a class="markdownIt-Anchor" href="#事务">#</a> 事务</h3>
+<p>含义：一个或一组 SQL 语句组成一个执行单元，这个执行单元要么全部执行，要么全部不执行。</p>
+<p>查看数据库支持的存储引擎：==SHOW ENGINES；== 可以看到，默认的存储引擎是 InnoDB。</p>
+<p><img src="https://gitee.com/dzcgood/img-bed/raw/master/img/image-20211116224930803.png" srcset="/img/loading.gif" lazyload alt="数据库存储引擎"></p>
+<p>InnoDB 支持事务，MyISAM 和 MEMORY 不支持事务。</p>
+<h4 id="事务的属性"><a class="markdownIt-Anchor" href="#事务的属性">#</a> 事务的属性</h4>
+<ul>
+<li><strong>原子性</strong>：指事物是一个不可分割的工作单位，<mark>事物中的操作要么都发生，要么都不发生。</mark></li>
+<li><strong>一致性</strong>：事务必须使数据库从一个一致性状态变换到另一个一致性状态</li>
+<li><strong>隔离性</strong>：一个事务的执行不能被其他事物干扰（这取决于隔离级别）</li>
+<li><strong>持久性</strong>：一个事务一旦被提交，其对数据库的改变就是永久性的</li>
+</ul>
+<h4 id="事务的创建"><a class="markdownIt-Anchor" href="#事务的创建">#</a> 事务的创建</h4>
+<p>隐式事务：事务没有明显的开启和结束的标记，如 INSERT, UPDATE, DELETE 语句</p>
+<p>显式事务：事务具有明显的开启和结束的标记。前提：<mark>必须通过 SET AUTOCOMMIT = 0; 设置自动提交功能为禁用</mark></p>
+<p>显示事务的创建：</p>
+<figure class="highlight sql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs sql"># 开启事务<br><span class="hljs-keyword">SET</span> AUTOCOMMIT <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br><span class="hljs-keyword">START</span> TRANSACTION;# 这句话可选，只要写了<span class="hljs-keyword">SET</span> AUTOCOMMIT <span class="hljs-operator">=</span> <span class="hljs-number">0</span> 即可<br># 步骤二：编写事务中的<span class="hljs-keyword">SQL</span>语句（<span class="hljs-keyword">SELECT</span>, <span class="hljs-keyword">INSERT</span>, UPDATE, <span class="hljs-keyword">DELETE</span>）<br># 结束事务，以下两个语句二选一<br><span class="hljs-keyword">COMMIT</span>; # 提交事务<br><span class="hljs-keyword">ROLLBACK</span>; # 回滚事务<br></code></pre></div></td></tr></table></figure>
+<p>DELETE 和 TRUNCATE 在事务使用时的区别：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">能否回滚</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">DELETE</td>
+<td style="text-align:center">√</td>
+</tr>
+<tr>
+<td style="text-align:center">TRUNCATE</td>
+<td style="text-align:center">×</td>
+</tr>
+</tbody>
+</table>
+<h4 id="事务的隔离级别"><a class="markdownIt-Anchor" href="#事务的隔离级别">#</a> 事务的隔离级别</h4>
+<p>查看当前隔离级别：<mark>SELECT @@TRANSACTION_ISOLATION</mark>(MySQL8)</p>
+<p>修改隔离级别：<mark>SET SESSION / GLOBAL TRANSACTION ISOLATION LEVEL 隔离级别</mark>，SESSION 对当前连接有效，GLOBAL 对全局有效</p>
+<p>事务隔离级别（从低到高）：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">脏读</th>
+<th style="text-align:center">不可重复读</th>
+<th style="text-align:center">幻读</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">READ-UNCOMMITTED</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+</tr>
+<tr>
+<td style="text-align:center">READ-COMMITTED</td>
+<td style="text-align:center">×</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+</tr>
+<tr>
+<td style="text-align:center">REPEATABLE-READ</td>
+<td style="text-align:center">×</td>
+<td style="text-align:center">×</td>
+<td style="text-align:center">√</td>
+</tr>
+<tr>
+<td style="text-align:center">SERIALIZABLE</td>
+<td style="text-align:center">×</td>
+<td style="text-align:center">×</td>
+<td style="text-align:center">×</td>
+</tr>
+</tbody>
+</table>
+<h4 id="savepoint的使用"><a class="markdownIt-Anchor" href="#savepoint的使用">#</a> SAVEPOINT 的使用</h4>
+<figure class="highlight sql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs sql"># <span class="hljs-keyword">savepoint</span>的使用<br><span class="hljs-keyword">SET</span> AUTOCOMMIT <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br><span class="hljs-keyword">START</span> TRANSACTION;<br><span class="hljs-keyword">DELETE</span> <span class="hljs-keyword">FROM</span> account <span class="hljs-keyword">WHERE</span> id <span class="hljs-operator">=</span> <span class="hljs-number">25</span>;<br><span class="hljs-keyword">SAVEPOINT</span> a; # 设置保存点A<br><span class="hljs-keyword">DELETE</span> <span class="hljs-keyword">FROM</span> account <span class="hljs-keyword">WHERE</span> id <span class="hljs-operator">=</span> <span class="hljs-number">19</span>;<br><span class="hljs-keyword">ROLLBACK</span> <span class="hljs-keyword">TO</span> a; # 回滚到存档点a<br></code></pre></div></td></tr></table></figure>
 <h2 id="视图"><a class="markdownIt-Anchor" href="#视图">#</a> 视图</h2>
+<p>含义：虚拟表，和普通表一样使用，是通过表动态生成的数据，其中只保存了 SQL 逻辑，<strong>不保存查询结果</strong>。</p>
 <h2 id="存储过程和函数"><a class="markdownIt-Anchor" href="#存储过程和函数">#</a> 存储过程和函数</h2>
 
             </div>
