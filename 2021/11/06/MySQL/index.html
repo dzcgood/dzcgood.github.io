@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://gitee.com/dzcgood/img-bed/raw/master/img/image-20211111143515166.png">
 <meta property="article:published_time" content="2021-11-05T16:09:32.000Z">
-<meta property="article:modified_time" content="2021-11-16T08:57:55.619Z">
+<meta property="article:modified_time" content="2021-11-16T09:16:59.531Z">
 <meta property="article:author" content="DzcGood">
 <meta property="article:tag" content="MySQL">
 <meta property="article:tag" content="学习笔记">
@@ -225,7 +225,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      68 分钟
+      70 分钟
     </span>
   
 
@@ -266,7 +266,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：3 分钟前
+                  本文最后更新于：2 小时前
                 
               </p>
             
@@ -892,8 +892,16 @@
 <figure class="highlight sql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs sql"># 删除非空约束<br><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> student MODIFY <span class="hljs-keyword">COLUMN</span> stu_name;<br># 删除主键约束<br><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> student MODIFY <span class="hljs-keyword">COLUMN</span> stu_name;<br># 或<br><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> student <span class="hljs-keyword">DROP</span> <span class="hljs-keyword">PRIMARY</span> KEY;<br># 删除唯一约束<br><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> student <span class="hljs-keyword">DROP</span> INDEX 约束名;<br># 删除外键约束<br><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> student <span class="hljs-keyword">DROP</span> <span class="hljs-keyword">FOREIGN</span> KEY 约束名;<br></code></pre></div></td></tr></table></figure>
 <h3 id="标识列"><a class="markdownIt-Anchor" href="#标识列">#</a> 标识列</h3>
 <p>含义：又成为自增长列，可以不用手动插入值，系统提供默认的序列值</p>
-<p>创建表时设置标识列:</p>
-<figure class="highlight sql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> tab_identity(<br>)<br></code></pre></div></td></tr></table></figure>
+<p>语法：列名 类型 [约束] AUTO_INCREMENT</p>
+<p>设置标识列:</p>
+<figure class="highlight sql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs sql"># 在创建表时设置标识列<br><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> tab_identity(<br>    id <span class="hljs-type">INT</span> <span class="hljs-keyword">PRIMARY</span> KEY AUTO_INCREMENT,<br>    name <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">20</span>)<br>)<br><br># 这样，在插入时，就不需要插入id这个字段<br><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> tab_identity <span class="hljs-keyword">VALUES</span>(<span class="hljs-keyword">NULL</span>, <span class="hljs-string">&#x27;john&#x27;</span>);<br># 或<br><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> tab_identity(name) <span class="hljs-keyword">VALUES</span>(<span class="hljs-string">&#x27;john&#x27;</span>);<br># 实际上还是可以自己插入id这个值的<br><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> tab_identity <span class="hljs-keyword">VALUES</span>(<span class="hljs-number">10</span>, <span class="hljs-string">&#x27;john&#x27;</span>); # 这样会插入一条数据(<span class="hljs-number">10</span>, <span class="hljs-string">&#x27;john&#x27;</span>)<br><br><br><span class="hljs-comment">-- 也可以在修改表的时候设置标识列</span><br><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> tab_identity <span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">COLUMN</span> id <span class="hljs-type">INT</span> <span class="hljs-keyword">PRIMARY</span> KEY AUTO_INCREMENT;<br># 删除标识列<br><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> tab_identity <span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">COLUMN</span> id <span class="hljs-type">INT</span> <span class="hljs-keyword">PRIMARY</span> KEY;<br></code></pre></div></td></tr></table></figure>
+<p>特点：</p>
+<ul>
+<li>一张表<strong>只能有一个</strong>标识列，且标识列<strong>必须是一个键</strong></li>
+<li>标识列的类型<strong>必须是数值型</strong></li>
+<li>可以修改每次增加的数值：<strong>SET AOTU_INCREMENT_INCREMENT = 3；</strong></li>
+<li>可以通过手动插入，设置起始值</li>
+</ul>
 <h2 id="tcl语言"><a class="markdownIt-Anchor" href="#tcl语言">#</a> TCL 语言</h2>
 <h2 id="视图"><a class="markdownIt-Anchor" href="#视图">#</a> 视图</h2>
 <h2 id="存储过程和函数"><a class="markdownIt-Anchor" href="#存储过程和函数">#</a> 存储过程和函数</h2>
