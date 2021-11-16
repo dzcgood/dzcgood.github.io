@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://gitee.com/dzcgood/img-bed/raw/master/img/image-20211111143515166.png">
 <meta property="article:published_time" content="2021-11-05T16:09:32.000Z">
-<meta property="article:modified_time" content="2021-11-15T17:50:53.765Z">
+<meta property="article:modified_time" content="2021-11-16T08:57:55.619Z">
 <meta property="article:author" content="DzcGood">
 <meta property="article:tag" content="MySQL">
 <meta property="article:tag" content="学习笔记">
@@ -225,7 +225,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      67 分钟
+      68 分钟
     </span>
   
 
@@ -266,7 +266,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：15 小时前
+                  本文最后更新于：几秒前
                 
               </p>
             
@@ -862,9 +862,38 @@
 <li>添加列级约束：ALTER TABLE 表名 MODIFY COLUMN 字段名 字段类型 新约束；</li>
 <li>添加表级别约束：ALTER TABLE 表名 ADD [CONSTRAINT 约束名] 约束类型 (字段名) [ 外键的引用 ]</li>
 </ul>
+<p>列级约束和表级约束对比：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">位置</th>
+<th style="text-align:center">支持的约束类型</th>
+<th style="text-align:center">是否可以起约束名</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">列级约束</td>
+<td style="text-align:center">列的后面</td>
+<td style="text-align:center">除了外键</td>
+<td style="text-align:center">√</td>
+</tr>
+<tr>
+<td style="text-align:center">表级约束</td>
+<td style="text-align:center">所有列的下面</td>
+<td style="text-align:center">除了 DEFAULT 和 NOT NULL</td>
+<td style="text-align:center">×</td>
+</tr>
+</tbody>
+</table>
 <figure class="highlight sql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> student(<br>	id <span class="hljs-type">INT</span> <span class="hljs-keyword">PRIMARY</span>,<br>    stu_name <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">20</span>)L,<br>    gender <span class="hljs-type">char</span>,<br>    seat <span class="hljs-type">INT</span>,<br>    majorID <span class="hljs-type">INT</span>,<br>);<br># 添加非空约束<br><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> student MODIFY <span class="hljs-keyword">COLUMN</span> stu_name <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span>;<br># 添加主键约束，，<span class="hljs-keyword">CONSTRAINT</span>可选<br><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> student MODIFY <span class="hljs-keyword">COLUMN</span> stu_name <span class="hljs-keyword">PRIMARY</span> KEY;<br><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> student <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">PRIMARY</span> KEY(stu_name);<br># 添加唯一约束，，<span class="hljs-keyword">CONSTRAINT</span>可选<br><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> student MODIFY <span class="hljs-keyword">COLUMN</span> stu_name <span class="hljs-keyword">UNIQUE</span>;<br><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> student <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">UNIQUE</span>(stu_name);<br># 添加外键约束，<span class="hljs-keyword">CONSTRAINT</span>可选<br><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> student <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">CONSTRAINT</span> fk_student_major <span class="hljs-keyword">FOREIGN</span> KEY(major_id) <span class="hljs-keyword">REFERENCES</span> major(id);<br></code></pre></div></td></tr></table></figure>
 <h4 id="删除约束"><a class="markdownIt-Anchor" href="#删除约束">#</a> 删除约束</h4>
 <figure class="highlight sql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs sql"># 删除非空约束<br><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> student MODIFY <span class="hljs-keyword">COLUMN</span> stu_name;<br># 删除主键约束<br><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> student MODIFY <span class="hljs-keyword">COLUMN</span> stu_name;<br># 或<br><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> student <span class="hljs-keyword">DROP</span> <span class="hljs-keyword">PRIMARY</span> KEY;<br># 删除唯一约束<br><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> student <span class="hljs-keyword">DROP</span> INDEX 约束名;<br># 删除外键约束<br><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> student <span class="hljs-keyword">DROP</span> <span class="hljs-keyword">FOREIGN</span> KEY 约束名;<br></code></pre></div></td></tr></table></figure>
+<h3 id="标识列"><a class="markdownIt-Anchor" href="#标识列">#</a> 标识列</h3>
+<p>含义：又成为自增长列，可以不用手动插入值，系统提供默认的序列值</p>
+<p>创建表时设置标识列:</p>
+<figure class="highlight sql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> tab_identity(<br>)<br></code></pre></div></td></tr></table></figure>
 <h2 id="tcl语言"><a class="markdownIt-Anchor" href="#tcl语言">#</a> TCL 语言</h2>
 <h2 id="视图"><a class="markdownIt-Anchor" href="#视图">#</a> 视图</h2>
 <h2 id="存储过程和函数"><a class="markdownIt-Anchor" href="#存储过程和函数">#</a> 存储过程和函数</h2>
