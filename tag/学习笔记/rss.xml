@@ -18,9 +18,9 @@
         <category>Linux</category>
         <category>JavaSE</category>
         <item>
-            <guid isPermalink="true">http://example.com/2021/11/15/%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8%E4%B8%8E%E8%BF%9B%E7%A8%8B%E9%80%9A%E4%BF%A1/</guid>
+            <guid isPermalink="true">http://example.com/2021/11/15/SystemCall_ProcessCommunication/</guid>
             <title>系统调用与进程通信</title>
-            <link>http://example.com/2021/11/15/%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8%E4%B8%8E%E8%BF%9B%E7%A8%8B%E9%80%9A%E4%BF%A1/</link>
+            <link>http://example.com/2021/11/15/SystemCall_ProcessCommunication/</link>
             <category>学习笔记</category>
             <category>Linux</category>
             <pubDate>Mon, 15 Nov 2021 10:07:24 +0800</pubDate>
@@ -108,9 +108,9 @@
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2021/11/06/MySQL%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E6%9C%AA%E5%AE%8C%EF%BC%89/</guid>
+            <guid isPermalink="true">http://example.com/2021/11/06/MySQL/</guid>
             <title>MySQL</title>
-            <link>http://example.com/2021/11/06/MySQL%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E6%9C%AA%E5%AE%8C%EF%BC%89/</link>
+            <link>http://example.com/2021/11/06/MySQL/</link>
             <category>MySQL</category>
             <category>学习笔记</category>
             <pubDate>Sat, 06 Nov 2021 00:09:32 +0800</pubDate>
@@ -714,9 +714,9 @@
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2021/11/04/JavaSE%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</guid>
+            <guid isPermalink="true">http://example.com/2021/11/04/JavaSE/</guid>
             <title>JavaSE</title>
-            <link>http://example.com/2021/11/04/JavaSE%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</link>
+            <link>http://example.com/2021/11/04/JavaSE/</link>
             <category>学习笔记</category>
             <category>JavaSE</category>
             <pubDate>Thu, 04 Nov 2021 22:21:51 +0800</pubDate>

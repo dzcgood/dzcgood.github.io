@@ -15,9 +15,9 @@
     <category term="Linux" />
     <category term="JavaSE" />
     <entry>
-        <id>http://example.com/2021/11/15/%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8%E4%B8%8E%E8%BF%9B%E7%A8%8B%E9%80%9A%E4%BF%A1/</id>
+        <id>http://example.com/2021/11/15/SystemCall_ProcessCommunication/</id>
         <title>系统调用与进程通信</title>
-        <link rel="alternate" href="http://example.com/2021/11/15/%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8%E4%B8%8E%E8%BF%9B%E7%A8%8B%E9%80%9A%E4%BF%A1/"/>
+        <link rel="alternate" href="http://example.com/2021/11/15/SystemCall_ProcessCommunication/"/>
         <content type="html">&lt;h1 id=&#34;系统调用与进程通信&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#系统调用与进程通信&#34;&gt;#&lt;/a&gt; 系统调用与进程通信&lt;/h1&gt;
 &lt;h2 id=&#34;系统调用&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#系统调用&#34;&gt;#&lt;/a&gt; 系统调用&lt;/h2&gt;
 &lt;h3 id=&#34;查询sys_call_table的地址&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#查询sys_call_table的地址&#34;&gt;#&lt;/a&gt; 查询 sys_call_table 的地址&lt;/h3&gt;
