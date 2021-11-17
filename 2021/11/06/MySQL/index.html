@@ -26,7 +26,7 @@
 <meta property="og:image" content="https://gitee.com/dzcgood/img-bed/raw/master/img/image-20211111143515166.png">
 <meta property="og:image" content="https://gitee.com/dzcgood/img-bed/raw/master/img/image-20211116224930803.png">
 <meta property="article:published_time" content="2021-11-05T16:09:32.000Z">
-<meta property="article:modified_time" content="2021-11-17T15:03:22.008Z">
+<meta property="article:modified_time" content="2021-11-17T17:57:37.948Z">
 <meta property="article:author" content="DzcGood">
 <meta property="article:tag" content="MySQL">
 <meta property="article:tag" content="学习笔记">
@@ -856,8 +856,17 @@
 <li>插入数据时，应该先插入主表，再插入从表</li>
 <li>删除数据时，应该先删除从表，在删除主表</li>
 </ul>
-<h4 id="创建表时添加约束"><a class="markdownIt-Anchor" href="#创建表时添加约束">#</a> 创建表时添加约束</h4>
-<figure class="highlight sql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs sql"><span class="hljs-comment">-- 添加列级约束 --</span><br><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> student(<br>	id <span class="hljs-type">INT</span> <span class="hljs-keyword">PRIMARY</span> KEY,<br>    stu_name <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">20</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span>,<br>    gender <span class="hljs-type">char</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-string">&#x27;男&#x27;</span> <span class="hljs-keyword">CHECK</span>(gender <span class="hljs-keyword">IN</span> (<span class="hljs-string">&#x27;男&#x27;</span>, <span class="hljs-string">&#x27;女&#x27;</span>)),<br>    seat <span class="hljs-type">INT</span> <span class="hljs-keyword">UNIQUE</span>,<br>    majorID <span class="hljs-type">INT</span> <span class="hljs-keyword">REFERENCES</span> major(id) # 外键，但这个写法MySQL不支持<br>)<br><br><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> major(<br>	id <span class="hljs-type">INT</span> <span class="hljs-keyword">PRIMARY</span> KEY,<br>    major_name <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">20</span>)<br>)<br><br><span class="hljs-comment">-- 添加表级约束 --</span><br># 格式：[ <span class="hljs-keyword">CONSTRAINT</span> 约束名 ] 约束类型(字段名)<br><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> student(<br>	id <span class="hljs-type">INT</span> <span class="hljs-keyword">PRIMARY</span>,<br>    stu_name <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">20</span>)L,<br>    gender <span class="hljs-type">char</span>,<br>    seat <span class="hljs-type">INT</span>,<br>    majorID <span class="hljs-type">INT</span>,<br>    # 下面的pk，uq，ck，fk是约束名（自己取的）<br>    <span class="hljs-keyword">CONSTRAINT</span> pk <span class="hljs-keyword">PRIMARY</span> KEY(id, stu_name), # 主键，表示id和stu_name共同组成一个主键<br>    <span class="hljs-keyword">CONSTRAINT</span> uq <span class="hljs-keyword">UNIQUE</span>(seat), # 唯一约束<br>    <span class="hljs-keyword">CONSTRAINT</span> ck <span class="hljs-keyword">CHECK</span>(gender <span class="hljs-keyword">IN</span> (<span class="hljs-string">&#x27;男&#x27;</span>, <span class="hljs-string">&#x27;女&#x27;</span>)), # <span class="hljs-keyword">CHECK</span>约束<br>    <span class="hljs-keyword">CONSTRAINT</span> fk <span class="hljs-keyword">FOREIGN</span> KEY(majorID) <span class="hljs-keyword">REFERENCES</span> major(id),# 外键<br>    # 外键约束一般取名为fk_引用表名_被引用表名，如fk_student_major<br>)<br></code></pre></div></td></tr></table></figure>
+<p>主键删除数据时，外键数据的处理方法：</p>
+<ul>
+<li>
+<p>==CASCADE：== 级联删除</p>
+</li>
+<li>
+<p>==SET NULL：== 置空删除</p>
+</li>
+<li>
+<figure class="highlight sql"><figcaption data-lang="SQL"></figcaption><table><tr><td data-num="1"></td><td><div class="hljs code-wrapper"><pre><span class="token keyword">DELETE</span> <span class="token keyword">FROM</span> my_table <span class="token keyword">WHERE</span> id <span class="token operator">=</span> <span class="token number">1</span> <span class="token keyword">ON</span> <span class="token keyword">DELETE</span> <span class="token keyword">SET</span> <span class="token boolean">NULL</span><span class="token punctuation">;</span> <span class="token comment"># 置空删除</span></pre></div></td></tr><tr><td data-num="2"></td><td><div class="hljs code-wrapper"><pre><span class="token keyword">DELETE</span> <span class="token keyword">FROM</span> my_table <span class="token keyword">WHERE</span> id <span class="token operator">=</span> <span class="token number">1</span> <span class="token keyword">ON</span> <span class="token keyword">DELETE</span> <span class="token keyword">SET</span> <span class="token keyword">CASCADE</span><span class="token punctuation">;</span> <span class="token comment"># 级联删除</span></pre></div></td></tr><tr><td data-num="3"></td><td><div class="hljs code-wrapper"><pre><span class="token operator">&lt;</span><span class="token operator">!</span><span class="token comment">--code￼35--></span></pre></div></td></tr></table></figure></li>
+</ul>
 <h4 id="修改表时添加约束"><a class="markdownIt-Anchor" href="#修改表时添加约束">#</a> 修改表时添加约束</h4>
 <ul>
 <li>添加列级约束：ALTER TABLE 表名 MODIFY COLUMN 字段名 字段类型 新约束；</li>
@@ -900,7 +909,7 @@
 <ul>
 <li>一张表<strong>只能有一个</strong>标识列，且标识列<strong>必须是一个键</strong></li>
 <li>标识列的类型<strong>必须是数值型</strong></li>
-<li>可以修改每次增加的数值：<strong>SET AOTU_INCREMENT_INCREMENT = 3；</strong></li>
+<li>可以修改每次增加的数值：<strong>SET AOTU_INCREMENT_INCREMENT = 步长；</strong></li>
 <li>可以通过手动插入，设置起始值</li>
 </ul>
 <h2 id="tcl语言"><a class="markdownIt-Anchor" href="#tcl语言">#</a> TCL 语言</h2>
@@ -942,7 +951,7 @@
 </table>
 <h4 id="事务的隔离级别"><a class="markdownIt-Anchor" href="#事务的隔离级别">#</a> 事务的隔离级别</h4>
 <p>查看当前隔离级别：<mark>SELECT @@TRANSACTION_ISOLATION</mark>(MySQL8)</p>
-<p>修改隔离级别：<mark>SET SESSION / GLOBAL TRANSACTION ISOLATION LEVEL 隔离级别</mark>，SESSION 对当前连接有效，GLOBAL 对全局有效</p>
+<p>修改隔离级别：<mark>SET SESSION / GLOBAL TRANSACTION ISOLATION LEVEL 隔离级别</mark>，SESSION 对当前连接有效，GLOBAL 对全局有效，修改的时候要写成<mark>中间的’-' 要换成空格！</mark></p>
 <p>事务隔离级别（从低到高）</p>
 <table>
 <thead>
@@ -1014,33 +1023,38 @@
 <p>WHERE 子句的子查询引用了 FROM 子句中的表</p>
 </li>
 <li>
-<figure class="highlight sql"><figcaption data-lang="SQL"></figcaption><table><tr><td data-num="1"></td><td><div class="hljs code-wrapper"><pre><span class="token comment"># WHERE 子句的子查询引用了 FROM 子句中的表</span></pre></div></td></tr><tr><td data-num="2"></td><td><div class="hljs code-wrapper"><pre><span class="token keyword">CREATE</span> <span class="token keyword">VIEW</span> my_view <span class="token keyword">AS</span></pre></div></td></tr><tr><td data-num="3"></td><td><div class="hljs code-wrapper"><pre><span class="token keyword">SELECT</span> <span class="token operator">*</span> </pre></div></td></tr><tr><td data-num="4"></td><td><div class="hljs code-wrapper"><pre><span class="token keyword">FROM</span> employees</pre></div></td></tr><tr><td data-num="5"></td><td><div class="hljs code-wrapper"><pre><span class="token keyword">WHERE</span> employee_id <span class="token operator">in</span><span class="token punctuation">(</span></pre></div></td></tr><tr><td data-num="6"></td><td><div class="hljs code-wrapper"><pre>	<span class="token keyword">SELECT</span> manager_id</pre></div></td></tr><tr><td data-num="7"></td><td><div class="hljs code-wrapper"><pre>	<span class="token keyword">FROM</span> employees</pre></div></td></tr><tr><td data-num="8"></td><td><div class="hljs code-wrapper"><pre><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></div></td></tr></table></figure></li>
+<figure class="highlight sql"><figcaption data-lang="SQL"></figcaption><table><tr><td data-num="1"></td><td><div class="hljs code-wrapper"><pre><span class="token comment"># WHERE 子句的子查询引用了 FROM 子句中的表</span></pre></div></td></tr><tr><td data-num="2"></td><td><div class="hljs code-wrapper"><pre><span class="token keyword">CREATE</span> <span class="token keyword">VIEW</span> my_view <span class="token keyword">AS</span></pre></div></td></tr><tr><td data-num="3"></td><td><div class="hljs code-wrapper"><pre><span class="token keyword">SELECT</span> <span class="token operator">*</span> </pre></div></td></tr><tr><td data-num="4"></td><td><div class="hljs code-wrapper"><pre><span class="token keyword">FROM</span> employees</pre></div></td></tr><tr><td data-num="5"></td><td><div class="hljs code-wrapper"><pre><span class="token keyword">WHERE</span> employee_id <span class="token operator">in</span><span class="token punctuation">(</span></pre></div></td></tr><tr><td data-num="6"></td><td><div class="hljs code-wrapper"><pre>	<span class="token keyword">SELECT</span> manager_id</pre></div></td></tr><tr><td data-num="7"></td><td><div class="hljs code-wrapper"><pre>	<span class="token keyword">FROM</span> employees</pre></div></td></tr><tr><td data-num="8"></td><td><div class="hljs code-wrapper"><pre><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></div></td></tr><tr><td data-num="9"></td><td><div class="hljs code-wrapper"><pre><span class="token operator">&lt;</span><span class="token operator">!</span><span class="token comment">--code￼42--></span></pre></div></td></tr></table></figure></li>
 </ul>
-<table>
-<thead>
-<tr>
-<th style="text-align:center"></th>
-<th style="text-align:center">是否实际保存数据</th>
-<th style="text-align:center">创建语句</th>
-<th style="text-align:center">操作</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center"><strong>视图</strong></td>
-<td style="text-align:center">×</td>
-<td style="text-align:center">CREATE VIEW 视图名 AS</td>
-<td style="text-align:center">查找（最常用）</td>
-</tr>
-<tr>
-<td style="text-align:center"><strong>表</strong></td>
-<td style="text-align:center">√</td>
-<td style="text-align:center">CREATE TABLE</td>
-<td style="text-align:center">增删改查</td>
-</tr>
-</tbody>
-</table>
+<p>#### 会话变量</p>
+<p>作用域：仅仅针对于<mark>当前会话</mark>连接有效</p>
+<figure class="highlight sql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs sql"># 查看所有会话变量<br><span class="hljs-keyword">SHOW</span> SESSION VARIABLES; # <span class="hljs-keyword">SHOW</span> VARIBALES效果是一样的 <br># 查看部分会话变量<br><span class="hljs-keyword">SHOW</span> SESSION VARIABLES <span class="hljs-keyword">LIKE</span> <span class="hljs-string">&#x27;%char%&#x27;</span>;<br># 查看指定的某个会话变量<br><span class="hljs-keyword">SELECT</span> @<span class="hljs-variable">@SESSION</span>.TRANSACTION_ISOLATION;<br># 修改某个会话变量<br><span class="hljs-keyword">SET</span> @<span class="hljs-variable">@SESSION</span>.TRANSACTION_ISOLATION <span class="hljs-operator">=</span> SERIALIZABLE;<br># 或<br><span class="hljs-keyword">SET</span> SESSION TRANSACTION_ISOLATION <span class="hljs-operator">=</span> SERIALIZABLE;<br></code></pre></div></td></tr></table></figure>
+<h3 id="自定义变量"><a class="markdownIt-Anchor" href="#自定义变量">#</a> 自定义变量</h3>
+<p>#### 用户变量</p>
+<p>作用域：针对于当前会话连接有效，可以在任何地方使用，即可以放在 begin end 里面或外面</p>
+<p>声明并初始化：</p>
+<ul>
+<li><mark>SET @用户变量名 = 值</mark></li>
+<li><mark>SET @用户变量名 := 值</mark></li>
+<li><mark>SELECT @用户变量名 := 值</mark></li>
+</ul>
+<p>赋值：</p>
+<p>方式一：</p>
+<ul>
+<li><mark>SET @用户变量名 = 值</mark></li>
+<li><mark>SET @用户变量名 := 值</mark></li>
+<li><mark>SELECT @用户变量名 := 值</mark></li>
+</ul>
+<p>方式二：</p>
+<ul>
+<li>
+<p>SELECT 字段 INTO 变量名 FROM 表；</p>
+</li>
+<li>
+<figure class="highlight sql"><figcaption data-lang="SQL"></figcaption><table><tr><td data-num="1"></td><td><div class="hljs code-wrapper"><pre><span class="token comment"># 例子，将变量名 @count 赋值为 employees 表的数据条数</span></pre></div></td></tr><tr><td data-num="2"></td><td><div class="hljs code-wrapper"><pre><span class="token keyword">SELECT</span> <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token keyword">INTO</span> <span class="token variable">@count</span> <span class="token keyword">FROM</span> employees<span class="token punctuation">;</span></pre></div></td></tr><tr><td data-num="3"></td><td><div class="hljs code-wrapper"><pre><span class="token comment"># 查看</span></pre></div></td></tr><tr><td data-num="4"></td><td><div class="hljs code-wrapper"><pre><span class="token keyword">SELECT</span> <span class="token variable">@count</span><span class="token punctuation">;</span></pre></div></td></tr></table></figure></li>
+</ul>
+<p>#### 局部变量</p>
 <h2 id="存储过程和函数"><a class="markdownIt-Anchor" href="#存储过程和函数">#</a> 存储过程和函数</h2>
+<h2 id="流程控制结构"><a class="markdownIt-Anchor" href="#流程控制结构">#</a> 流程控制结构</h2>
 
             </div>
             <hr>
