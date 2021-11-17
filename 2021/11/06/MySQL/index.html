@@ -26,7 +26,7 @@
 <meta property="og:image" content="https://gitee.com/dzcgood/img-bed/raw/master/img/image-20211111143515166.png">
 <meta property="og:image" content="https://gitee.com/dzcgood/img-bed/raw/master/img/image-20211116224930803.png">
 <meta property="article:published_time" content="2021-11-05T16:09:32.000Z">
-<meta property="article:modified_time" content="2021-11-16T18:24:49.139Z">
+<meta property="article:modified_time" content="2021-11-17T15:03:22.008Z">
 <meta property="article:author" content="DzcGood">
 <meta property="article:tag" content="MySQL">
 <meta property="article:tag" content="学习笔记">
@@ -217,7 +217,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      23k 字
+      24k 字
     </span>
   
 
@@ -226,7 +226,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      73 分钟
+      75 分钟
     </span>
   
 
@@ -267,7 +267,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：10 小时前
+                  本文最后更新于：几秒前
                 
               </p>
             
@@ -920,7 +920,7 @@
 <p>隐式事务：事务没有明显的开启和结束的标记，如 INSERT, UPDATE, DELETE 语句</p>
 <p>显式事务：事务具有明显的开启和结束的标记。前提：<mark>必须通过 SET AUTOCOMMIT = 0; 设置自动提交功能为禁用</mark></p>
 <p>显示事务的创建：</p>
-<figure class="highlight sql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs sql"># 开启事务<br><span class="hljs-keyword">SET</span> AUTOCOMMIT <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br><span class="hljs-keyword">START</span> TRANSACTION;# 这句话可选，只要写了<span class="hljs-keyword">SET</span> AUTOCOMMIT <span class="hljs-operator">=</span> <span class="hljs-number">0</span> 即可<br># 步骤二：编写事务中的<span class="hljs-keyword">SQL</span>语句（<span class="hljs-keyword">SELECT</span>, <span class="hljs-keyword">INSERT</span>, UPDATE, <span class="hljs-keyword">DELETE</span>）<br># 结束事务，以下两个语句二选一<br><span class="hljs-keyword">COMMIT</span>; # 提交事务<br><span class="hljs-keyword">ROLLBACK</span>; # 回滚事务<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs sql"># 开启事务<br><span class="hljs-keyword">SET</span> AUTOCOMMIT <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br><span class="hljs-keyword">START</span> TRANSACTION;# 这句话可选，只要写了<span class="hljs-keyword">SET</span> AUTOCOMMIT <span class="hljs-operator">=</span> <span class="hljs-number">0</span> 即可<br># 步骤二：编写事务中的<span class="hljs-keyword">SQL</span>语句（<span class="hljs-keyword">SELECT</span>, <span class="hljs-keyword">INSERT</span>, UPDATE, <span class="hljs-keyword">DELETE</span>，其他的写了也没用）<br># 结束事务，以下两个语句二选一<br><span class="hljs-keyword">COMMIT</span>; # 提交事务<br><span class="hljs-keyword">ROLLBACK</span>; # 回滚事务<br></code></pre></div></td></tr></table></figure>
 <p>DELETE 和 TRUNCATE 在事务使用时的区别：</p>
 <table>
 <thead>
@@ -943,11 +943,11 @@
 <h4 id="事务的隔离级别"><a class="markdownIt-Anchor" href="#事务的隔离级别">#</a> 事务的隔离级别</h4>
 <p>查看当前隔离级别：<mark>SELECT @@TRANSACTION_ISOLATION</mark>(MySQL8)</p>
 <p>修改隔离级别：<mark>SET SESSION / GLOBAL TRANSACTION ISOLATION LEVEL 隔离级别</mark>，SESSION 对当前连接有效，GLOBAL 对全局有效</p>
-<p>事务隔离级别（从低到高）：</p>
+<p>事务隔离级别（从低到高）</p>
 <table>
 <thead>
 <tr>
-<th style="text-align:center"></th>
+<th style="text-align:center">隔离级别</th>
 <th style="text-align:center">脏读</th>
 <th style="text-align:center">不可重复读</th>
 <th style="text-align:center">幻读</th>
@@ -984,6 +984,62 @@
 <figure class="highlight sql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs sql"># <span class="hljs-keyword">savepoint</span>的使用<br><span class="hljs-keyword">SET</span> AUTOCOMMIT <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br><span class="hljs-keyword">START</span> TRANSACTION;<br><span class="hljs-keyword">DELETE</span> <span class="hljs-keyword">FROM</span> account <span class="hljs-keyword">WHERE</span> id <span class="hljs-operator">=</span> <span class="hljs-number">25</span>;<br><span class="hljs-keyword">SAVEPOINT</span> a; # 设置保存点A<br><span class="hljs-keyword">DELETE</span> <span class="hljs-keyword">FROM</span> account <span class="hljs-keyword">WHERE</span> id <span class="hljs-operator">=</span> <span class="hljs-number">19</span>;<br><span class="hljs-keyword">ROLLBACK</span> <span class="hljs-keyword">TO</span> a; # 回滚到存档点a<br></code></pre></div></td></tr></table></figure>
 <h2 id="视图"><a class="markdownIt-Anchor" href="#视图">#</a> 视图</h2>
 <p>含义：虚拟表，和普通表一样使用，是通过表动态生成的数据，其中只保存了 SQL 逻辑，<strong>不保存查询结果</strong>。</p>
+<p>创建视图：<mark>CREATE VIEW 视图名 AS 查询语句</mark></p>
+<figure class="highlight sql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs sql"># 创建视图，查询员工中包含字符a的员工名、部门名和工种信息<br><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">VIEW</span> my_view <span class="hljs-keyword">AS</span><br><span class="hljs-keyword">SELECT</span> e.last_name, department_name, e.job_id<br><span class="hljs-keyword">FROM</span> employee e<br><span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> departments d <span class="hljs-keyword">ON</span> e.departmen_id <span class="hljs-operator">=</span> d.department_id<br><span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> jobs j <span class="hljs-keyword">ON</span> e.job_id <span class="hljs-operator">=</span> j.job_id<br><span class="hljs-keyword">WHERE</span> e.last_name <span class="hljs-keyword">LIKE</span> <span class="hljs-string">&#x27;%a%&#x27;</span><br></code></pre></div></td></tr></table></figure>
+<p><strong>修改视图：</strong></p>
+<ul>
+<li><mark>CREATE OR REPLACE VIEW 视图名 AS 查询语句</mark></li>
+<li><mark>ALTER VIEW 视图名 AS 查询语句</mark></li>
+</ul>
+<p><strong>删除视图：</strong><mark>DROP VIEW 视图名，视图名，……</mark></p>
+<p><strong>查看视图信息：</strong><mark>DESC 视图名</mark> 或 <mark>SHOW CREATE VIEW 视图名</mark></p>
+<p><strong>具备以下特点的视图不允许更新：</strong></p>
+<ul>
+<li>
+<p>包含以下关键字的 SQL 语句：分组函数、DISTINCT、GROUP BY、HAVING、UNION、UNION ALL</p>
+</li>
+<li>
+<p>常量视图</p>
+</li>
+<li>
+<p>SELECT 中包含子查询</p>
+</li>
+<li>
+<p>用上了连接语句（能 UPDATE，不能 INSERT、DELETE）</p>
+</li>
+<li>
+<p>视图的创建过程中用到了不能更新的另一个视图</p>
+</li>
+<li>
+<p>WHERE 子句的子查询引用了 FROM 子句中的表</p>
+</li>
+<li>
+<figure class="highlight sql"><figcaption data-lang="SQL"></figcaption><table><tr><td data-num="1"></td><td><div class="hljs code-wrapper"><pre><span class="token comment"># WHERE 子句的子查询引用了 FROM 子句中的表</span></pre></div></td></tr><tr><td data-num="2"></td><td><div class="hljs code-wrapper"><pre><span class="token keyword">CREATE</span> <span class="token keyword">VIEW</span> my_view <span class="token keyword">AS</span></pre></div></td></tr><tr><td data-num="3"></td><td><div class="hljs code-wrapper"><pre><span class="token keyword">SELECT</span> <span class="token operator">*</span> </pre></div></td></tr><tr><td data-num="4"></td><td><div class="hljs code-wrapper"><pre><span class="token keyword">FROM</span> employees</pre></div></td></tr><tr><td data-num="5"></td><td><div class="hljs code-wrapper"><pre><span class="token keyword">WHERE</span> employee_id <span class="token operator">in</span><span class="token punctuation">(</span></pre></div></td></tr><tr><td data-num="6"></td><td><div class="hljs code-wrapper"><pre>	<span class="token keyword">SELECT</span> manager_id</pre></div></td></tr><tr><td data-num="7"></td><td><div class="hljs code-wrapper"><pre>	<span class="token keyword">FROM</span> employees</pre></div></td></tr><tr><td data-num="8"></td><td><div class="hljs code-wrapper"><pre><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></div></td></tr></table></figure></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">是否实际保存数据</th>
+<th style="text-align:center">创建语句</th>
+<th style="text-align:center">操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><strong>视图</strong></td>
+<td style="text-align:center">×</td>
+<td style="text-align:center">CREATE VIEW 视图名 AS</td>
+<td style="text-align:center">查找（最常用）</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>表</strong></td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">CREATE TABLE</td>
+<td style="text-align:center">增删改查</td>
+</tr>
+</tbody>
+</table>
 <h2 id="存储过程和函数"><a class="markdownIt-Anchor" href="#存储过程和函数">#</a> 存储过程和函数</h2>
 
             </div>
