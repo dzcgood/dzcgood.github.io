@@ -39,7 +39,7 @@
 <meta property="og:image" content="https://gitee.com/dzcgood/img-bed/raw/master/img/image-20211115013923471.png">
 <meta property="og:image" content="https://gitee.com/dzcgood/img-bed/raw/master/img/image-20211115013953657.png">
 <meta property="article:published_time" content="2021-11-15T02:07:24.000Z">
-<meta property="article:modified_time" content="2021-11-15T02:39:38.056Z">
+<meta property="article:modified_time" content="2021-11-22T07:33:40.508Z">
 <meta property="article:author" content="DzcGood">
 <meta property="article:tag" content="学习笔记">
 <meta property="article:tag" content="Linux">
@@ -280,7 +280,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：4 天前
+                  本文最后更新于：几秒前
                 
               </p>
             
@@ -356,7 +356,7 @@
 <h4 id="思路"><a class="markdownIt-Anchor" href="#思路">#</a> 思路</h4>
 <ul>
 <li>为 M1，M2 分别建立两个共享空间，创建三个进程，父进程，A 进程，B 进程，将共享内存连接到当前进程的地址空间，使得三个进程都能访问 M1,M2。</li>
-<li>设置两个信号量<strong> A_ENABLE，B_ENABLE</strong>，分别表示允许 A 执行和允许 B 执行。程序开始的时候，A_ENABLE = 1，B_ENABLE = B。每次 A 执行时，对 A_ENABLE 执行<strong> P 操作</strong>，A 结束时，对 B_ENABLE 执行<strong> V 操作</strong>；每次 B 执行时，对 B_ENABLE 执行<strong> P 操作</strong>，B 结束时，对 A_ENABLE 执行<strong> V 操作</strong>，这样就可以达到 A 和 B 轮流执行的效果。</li>
+<li>设置两个信号量<strong> A_ENABLE，B_ENABLE</strong>，分别表示允许 A 执行和允许 B 执行。程序开始的时候，A_ENABLE = 1，B_ENABLE = 0。每次 A 执行时，对 A_ENABLE 执行<strong> P 操作</strong>，A 结束时，对 B_ENABLE 执行<strong> V 操作</strong>；每次 B 执行时，对 B_ENABLE 执行<strong> P 操作</strong>，B 结束时，对 A_ENABLE 执行<strong> V 操作</strong>，这样就可以达到 A 和 B 轮流执行的效果。</li>
 <li>为了使程序能够有较好的效果且能够停止，这里设置 A 和 B<strong> 分别执行 4 次</strong>操作</li>
 <li>此代码参考<a target="_blank" rel="noopener" href="https://www.cnblogs.com/harrypotterjackson/p/11997774.html">生产者消费者问题 多进程共享内存 - LightningStar - 博客园 (cnblogs.com)</a> 并按照题目要求做了修改以符合作业要求</li>
 </ul>
