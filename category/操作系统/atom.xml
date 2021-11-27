@@ -25,7 +25,7 @@
 &lt;figure class=&#34;highlight shell&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter hljs&#34;&gt;&lt;div class=&#34;hljs code-wrapper&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;div class=&#34;hljs code-wrapper&#34;&gt;&lt;pre&gt;&lt;code class=&#34;hljs shell&#34;&gt;sudo cat /proc/kallsyms | grep sys_call_table&lt;br&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;查找到 sys_call_table 的地址为&lt;strong&gt; 0xffffffffb48001e0&lt;/strong&gt;：&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://gitee.com/dzcgood/img-bed/raw/master/img/image-20211115090038725.png&#34; alt=&#34;sys_call_table地址&#34;&gt;&lt;/p&gt;
-&lt;p&gt;### 查询可用的系统调用号&lt;/p&gt;
+&lt;h3 id=&#34;查询可用的系统调用号&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#查询可用的系统调用号&#34;&gt;#&lt;/a&gt; 查询可用的系统调用号&lt;/h3&gt;
 &lt;p&gt;通过命令打开&lt;strong&gt; unistd_32.h&lt;/strong&gt;：&lt;/p&gt;
 &lt;figure class=&#34;highlight shell&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter hljs&#34;&gt;&lt;div class=&#34;hljs code-wrapper&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;div class=&#34;hljs code-wrapper&#34;&gt;&lt;pre&gt;&lt;code class=&#34;hljs shell&#34;&gt;vim /usr/include/asm/unistd_32.h&lt;br&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;如图所示，可以看到&lt;strong&gt; 387 号&lt;/strong&gt;是可用的系统调用号：&lt;/p&gt;
