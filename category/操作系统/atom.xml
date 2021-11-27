@@ -4,16 +4,16 @@
     <title>DzcGood • Posts by &#34;操作系统&#34; category</title>
     <link href="http://example.com" />
     <updated>2021-11-15T02:07:24.000Z</updated>
-    <category term="MySQL" />
-    <category term="学习笔记" />
-    <category term="编译原理" />
-    <category term="SCNU-CS" />
-    <category term="XLEX" />
     <category term="leetcode" />
     <category term="数组" />
     <category term="二分查找" />
+    <category term="编译原理" />
+    <category term="SCNU-CS" />
     <category term="Linux" />
+    <category term="学习笔记" />
+    <category term="MySQL" />
     <category term="JavaSE" />
+    <category term="XLEX" />
     <entry>
         <id>http://example.com/2021/11/15/SystemCall_ProcessCommunication/</id>
         <title>系统调用与进程通信</title>
@@ -100,8 +100,8 @@
 &lt;p&gt;&lt;img src=&#34;https://gitee.com/dzcgood/img-bed/raw/master/img/image-20211115013923471.png&#34; alt=&#34;M1M2运行截图2&#34;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://gitee.com/dzcgood/img-bed/raw/master/img/image-20211115013953657.png&#34; alt=&#34;M1M2运行截图3&#34;&gt;&lt;/p&gt;
 </content>
-        <category term="学习笔记" />
         <category term="Linux" />
+        <category term="学习笔记" />
         <updated>2021-11-15T02:07:24.000Z</updated>
     </entry>
 </feed>
