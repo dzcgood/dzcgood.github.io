@@ -7,16 +7,18 @@
         <language>zh-CN</language>
         <pubDate>Tue, 02 Nov 2021 00:41:36 +0800</pubDate>
         <lastBuildDate>Tue, 02 Nov 2021 00:41:36 +0800</lastBuildDate>
-        <category>编译原理</category>
-        <category>SCNU-CS</category>
         <category>leetcode</category>
         <category>数组</category>
         <category>二分查找</category>
-        <category>XLEX</category>
+        <category>编译原理</category>
+        <category>SCNU-CS</category>
         <category>Linux</category>
         <category>学习笔记</category>
         <category>MySQL</category>
+        <category>XLEX</category>
         <category>JavaSE</category>
+        <category>Redis</category>
+        <category>Jedis</category>
         <item>
             <guid isPermalink="true">http://example.com/2021/11/02/BinarySearch/</guid>
             <title>二分查找</title>
