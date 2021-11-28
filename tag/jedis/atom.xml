@@ -4,18 +4,18 @@
     <title>DzcGood • Posts by &#34;jedis&#34; tag</title>
     <link href="http://example.com" />
     <updated>2021-11-28T16:20:35.000Z</updated>
+    <category term="编译原理" />
+    <category term="SCNU-CS" />
     <category term="leetcode" />
     <category term="数组" />
     <category term="二分查找" />
-    <category term="编译原理" />
-    <category term="SCNU-CS" />
-    <category term="Linux" />
-    <category term="学习笔记" />
-    <category term="MySQL" />
-    <category term="XLEX" />
-    <category term="JavaSE" />
     <category term="Redis" />
     <category term="Jedis" />
+    <category term="学习笔记" />
+    <category term="MySQL" />
+    <category term="Linux" />
+    <category term="JavaSE" />
+    <category term="XLEX" />
     <entry>
         <id>http://example.com/2021/11/29/Redis/</id>
         <title>使用Jedis连接Redis</title>
@@ -32,9 +32,9 @@
   &lt;/div&gt;
 &lt;/div&gt;
 &lt;script data-pjax src=&#34;/lib/hbe.js&#34;&gt;&lt;/script&gt;&lt;link href=&#34;/css/hbe.style.css&#34; rel=&#34;stylesheet&#34; type=&#34;text/css&#34;&gt;</content>
-        <category term="学习笔记" />
         <category term="Redis" />
         <category term="Jedis" />
+        <category term="学习笔记" />
         <updated>2021-11-28T16:20:35.000Z</updated>
     </entry>
 </feed>
