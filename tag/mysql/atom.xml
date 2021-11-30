@@ -12,10 +12,10 @@
     <category term="Redis" />
     <category term="Jedis" />
     <category term="学习笔记" />
-    <category term="MySQL" />
     <category term="Linux" />
-    <category term="JavaSE" />
     <category term="XLEX" />
+    <category term="MySQL" />
+    <category term="JavaSE" />
     <entry>
         <id>http://example.com/2021/11/06/MySQL/</id>
         <title>MySQL基础</title>
