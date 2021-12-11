@@ -4,18 +4,19 @@
     <title>DzcGood • Posts by &#34;mysql&#34; tag</title>
     <link href="http://example.com" />
     <updated>2021-11-05T16:09:32.000Z</updated>
-    <category term="编译原理" />
-    <category term="SCNU-CS" />
     <category term="leetcode" />
     <category term="数组" />
     <category term="二分查找" />
+    <category term="编译原理" />
+    <category term="SCNU-CS" />
+    <category term="Linux" />
+    <category term="学习笔记" />
+    <category term="JavaSE" />
     <category term="Redis" />
     <category term="Jedis" />
-    <category term="学习笔记" />
-    <category term="Linux" />
-    <category term="XLEX" />
     <category term="MySQL" />
-    <category term="JavaSE" />
+    <category term="XLEX" />
+    <category term="锁" />
     <entry>
         <id>http://example.com/2021/11/06/MySQL/</id>
         <title>MySQL基础</title>

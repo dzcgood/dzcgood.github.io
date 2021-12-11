@@ -7,18 +7,19 @@
         <language>zh-CN</language>
         <pubDate>Fri, 26 Nov 2021 16:15:00 +0800</pubDate>
         <lastBuildDate>Fri, 26 Nov 2021 16:15:00 +0800</lastBuildDate>
-        <category>编译原理</category>
-        <category>SCNU-CS</category>
         <category>leetcode</category>
         <category>数组</category>
         <category>二分查找</category>
+        <category>编译原理</category>
+        <category>SCNU-CS</category>
+        <category>Linux</category>
+        <category>学习笔记</category>
+        <category>JavaSE</category>
         <category>Redis</category>
         <category>Jedis</category>
-        <category>学习笔记</category>
-        <category>Linux</category>
-        <category>XLEX</category>
         <category>MySQL</category>
-        <category>JavaSE</category>
+        <category>XLEX</category>
+        <category>锁</category>
         <item>
             <guid isPermalink="true">http://example.com/2021/11/26/GrammerProblemProcessor/</guid>
             <title>文法问题处理器</title>
