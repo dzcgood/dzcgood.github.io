@@ -10,13 +10,13 @@
     <category term="编译原理" />
     <category term="SCNU-CS" />
     <category term="Linux" />
+    <category term="锁" />
+    <category term="MySQL" />
     <category term="学习笔记" />
-    <category term="JavaSE" />
     <category term="Redis" />
     <category term="Jedis" />
-    <category term="MySQL" />
+    <category term="JavaSE" />
     <category term="XLEX" />
-    <category term="锁" />
     <entry>
         <id>http://example.com/2021/11/29/Redis/</id>
         <title>使用Jedis连接Redis</title>
@@ -1077,8 +1077,8 @@
 &lt;h2 id=&#34;完结撒花&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#完结撒花&#34;&gt;#&lt;/a&gt; 完结撒花&lt;/h2&gt;
 &lt;p&gt;本大三菜鸡终于学完 MySQL 基础了。。。。。。溜&lt;/p&gt;
 </content>
-        <category term="学习笔记" />
         <category term="MySQL" />
+        <category term="学习笔记" />
         <updated>2021-11-05T16:09:32.000Z</updated>
     </entry>
     <entry>

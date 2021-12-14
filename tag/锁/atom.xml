@@ -10,13 +10,13 @@
     <category term="编译原理" />
     <category term="SCNU-CS" />
     <category term="Linux" />
+    <category term="锁" />
+    <category term="MySQL" />
     <category term="学习笔记" />
-    <category term="JavaSE" />
     <category term="Redis" />
     <category term="Jedis" />
-    <category term="MySQL" />
+    <category term="JavaSE" />
     <category term="XLEX" />
-    <category term="锁" />
     <entry>
         <id>http://example.com/2021/12/11/Lock/</id>
         <title>锁</title>

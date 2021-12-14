@@ -13,13 +13,13 @@
         <category>编译原理</category>
         <category>SCNU-CS</category>
         <category>Linux</category>
+        <category>锁</category>
+        <category>MySQL</category>
         <category>学习笔记</category>
-        <category>JavaSE</category>
         <category>Redis</category>
         <category>Jedis</category>
-        <category>MySQL</category>
+        <category>JavaSE</category>
         <category>XLEX</category>
-        <category>锁</category>
         <item>
             <guid isPermalink="true">http://example.com/2021/10/31/XLEX_Generator/</guid>
             <title>编译原理实验二 XLEX</title>
