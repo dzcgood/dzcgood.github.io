@@ -20,6 +20,8 @@
         <category>Jedis</category>
         <category>JavaSE</category>
         <category>XLEX</category>
+        <category>MySql</category>
+        <category>JDBC</category>
         <item>
             <guid isPermalink="true">http://example.com/2021/11/04/JavaSE/</guid>
             <title>JavaSE</title>

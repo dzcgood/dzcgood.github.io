@@ -20,6 +20,8 @@
         <category>Jedis</category>
         <category>JavaSE</category>
         <category>XLEX</category>
+        <category>MySql</category>
+        <category>JDBC</category>
         <item>
             <guid isPermalink="true">http://example.com/2021/10/31/XLEX_Generator/</guid>
             <title>编译原理实验二 XLEX</title>

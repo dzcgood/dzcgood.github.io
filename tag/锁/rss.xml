@@ -20,6 +20,8 @@
         <category>Jedis</category>
         <category>JavaSE</category>
         <category>XLEX</category>
+        <category>MySql</category>
+        <category>JDBC</category>
         <item>
             <guid isPermalink="true">http://example.com/2021/12/11/Lock/</guid>
             <title>锁</title>

@@ -17,6 +17,8 @@
     <category term="Jedis" />
     <category term="JavaSE" />
     <category term="XLEX" />
+    <category term="MySql" />
+    <category term="JDBC" />
     <entry>
         <id>http://example.com/2021/11/04/JavaSE/</id>
         <title>JavaSE</title>
