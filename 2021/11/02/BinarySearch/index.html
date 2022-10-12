@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="https://gitee.com/dzcgood/img-bed/raw/master/img/微信图片_20211102175940.jpg">
-  <link rel="icon" href="https://gitee.com/dzcgood/img-bed/raw/master/img/微信图片_20211102175940.jpg">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://blog-img-1308044888.cos.ap-shanghai.myqcloud.com/img/微信图片_20211102175940.jpg">
+  <link rel="icon" href="https://blog-img-1308044888.cos.ap-shanghai.myqcloud.com/img/微信图片_20211102175940.jpg">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -23,16 +23,16 @@
 <meta property="og:site_name" content="DzcGood">
 <meta property="og:description" content="第一篇刷题水文当然要从最简单的数组开始啦~">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://gitee.com/dzcgood/img-bed/raw/master/img/image-20211102010323501.png">
-<meta property="og:image" content="https://gitee.com/dzcgood/img-bed/raw/master/img/image-20211102010414508.png">
+<meta property="og:image" content="https://blog-img-1308044888.cos.ap-shanghai.myqcloud.com/img/image-20211102010323501.png">
+<meta property="og:image" content="https://blog-img-1308044888.cos.ap-shanghai.myqcloud.com/img/image-20211102010414508.png">
 <meta property="article:published_time" content="2021-11-01T16:41:36.000Z">
-<meta property="article:modified_time" content="2021-11-04T15:03:11.602Z">
+<meta property="article:modified_time" content="2022-10-12T07:08:03.529Z">
 <meta property="article:author" content="DzcGood">
 <meta property="article:tag" content="leetcode">
 <meta property="article:tag" content="数组">
 <meta property="article:tag" content="二分查找">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://gitee.com/dzcgood/img-bed/raw/master/img/image-20211102010323501.png">
+<meta name="twitter:image" content="https://blog-img-1308044888.cos.ap-shanghai.myqcloud.com/img/image-20211102010323501.png">
   
   <title>二分查找 - DzcGood</title>
 
@@ -268,7 +268,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：1 年前
+                  本文最后更新于：8 分钟前
                 
               </p>
             
@@ -325,8 +325,8 @@ nums 的每个元素都将在 [-9999, 9999] 之间。</p>
 <figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">package</span> T704;<br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 简单地不能再简单的二分查找</span><br><span class="hljs-comment"> * */</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">search</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] nums, <span class="hljs-keyword">int</span> target)</span> </span>&#123;<br>        <span class="hljs-comment">//这里假设nums[target]的索引在区间[left, right]内，注意这里是闭区间</span><br>        <span class="hljs-keyword">int</span> left = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">int</span> right = nums.length;<br>        <span class="hljs-keyword">int</span> mid;<br>        <span class="hljs-keyword">while</span>(left &lt;= right)&#123;<br>            mid = (left + right) / <span class="hljs-number">2</span>;<br>            <span class="hljs-comment">//找到</span><br>            <span class="hljs-keyword">if</span>(nums[mid] == target)&#123;<br>                <span class="hljs-keyword">return</span> mid;<br>            &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(target &lt; nums[mid])&#123;<br>                <span class="hljs-comment">//说明target在左边</span><br>                right = mid - <span class="hljs-number">1</span>;<br>            &#125;<span class="hljs-keyword">else</span>&#123;<br>                <span class="hljs-comment">//说明target在右边</span><br>                left = mid + <span class="hljs-number">1</span>;<br>            &#125;<br>        &#125;<br>        <span class="hljs-comment">//没找到，返回-1</span><br>        <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
 <h2 id="算法对比"><a class="markdownIt-Anchor" href="#算法对比">#</a> 算法对比</h2>
 <p>这么简单的二分查找肯定是标准答案啦（<s>等到别的题我就知道错了</s>）</p>
-<p><img src="https://gitee.com/dzcgood/img-bed/raw/master/img/image-20211102010323501.png" srcset="/img/loading.gif" lazyload alt="执行用时分布图表"></p>
-<p><img src="https://gitee.com/dzcgood/img-bed/raw/master/img/image-20211102010414508.png" srcset="/img/loading.gif" lazyload alt="执行消耗内存分布图表"></p>
+<p><img src="https://blog-img-1308044888.cos.ap-shanghai.myqcloud.com/img/image-20211102010323501.png" srcset="/img/loading.gif" lazyload alt="执行用时分布图表"></p>
+<p><img src="https://blog-img-1308044888.cos.ap-shanghai.myqcloud.com/img/image-20211102010414508.png" srcset="/img/loading.gif" lazyload alt="执行消耗内存分布图表"></p>
 
             </div>
             <hr>
