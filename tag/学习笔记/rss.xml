@@ -12,13 +12,13 @@
         <category>二分查找</category>
         <category>编译原理</category>
         <category>SCNU-CS</category>
+        <category>Linux</category>
+        <category>锁</category>
         <category>Brain-Like Computing</category>
         <category>Spiking Neural Networks</category>
         <category>MySql</category>
         <category>JDBC</category>
         <category>学习笔记</category>
-        <category>Linux</category>
-        <category>锁</category>
         <category>Redis</category>
         <category>Jedis</category>
         <category>XLEX</category>
@@ -326,8 +326,8 @@
             <guid isPermalink="true">http://example.com/2021/11/15/SystemCall_ProcessCommunication/</guid>
             <title>系统调用与进程通信</title>
             <link>http://example.com/2021/11/15/SystemCall_ProcessCommunication/</link>
-            <category>学习笔记</category>
             <category>Linux</category>
+            <category>学习笔记</category>
             <pubDate>Mon, 15 Nov 2021 10:07:24 +0800</pubDate>
             <description><![CDATA[ &lt;h1 id=&#34;系统调用与进程通信&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#系统调用与进程通信&#34;&gt;#&lt;/a&gt; 系统调用与进程通信&lt;/h1&gt;
 &lt;h2 id=&#34;系统调用&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#系统调用&#34;&gt;#&lt;/a&gt; 系统调用&lt;/h2&gt;
