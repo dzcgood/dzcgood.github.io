@@ -1,0 +1,888 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://blog-img-1308044888.cos.ap-shanghai.myqcloud.com/img/微信图片_20211102175940.jpg">
+  <link rel="icon" href="https://blog-img-1308044888.cos.ap-shanghai.myqcloud.com/img/微信图片_20211102175940.jpg">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="DzcGood">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="三种锁的原理和优缺点">
+<meta property="og:type" content="article">
+<meta property="og:title" content="锁">
+<meta property="og:url" content="http://example.com/2021/12/11/Lock/index.html">
+<meta property="og:site_name" content="DzcGood">
+<meta property="og:description" content="三种锁的原理和优缺点">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blog-img-1308044888.cos.ap-shanghai.myqcloud.com/raw/master/img/lock.png">
+<meta property="article:published_time" content="2021-12-11T15:45:14.000Z">
+<meta property="article:modified_time" content="2022-10-12T07:20:16.000Z">
+<meta property="article:author" content="DzcGood">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="锁">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://blog-img-1308044888.cos.ap-shanghai.myqcloud.com/raw/master/img/lock.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>锁 - DzcGood</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":90,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="DzcGood" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>DzcGood</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="锁"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        DzcGood
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-12-11 23:45" pubdate>
+          2021年12月11日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          1.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          <!-- compatible with older versions-->
+          5 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">锁</h1>
+            
+              <p id="updated-time" class="note note-info" style="display: none">
+                
+                  
+                    <!-- compatible with older versions-->
+                    本文最后更新于：2022-10-12T15:20:16+08:00
+                  
+                  
+
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="锁"><a class="markdownIt-Anchor" href="#锁">#</a> 锁</h1>
+<h2 id="基于标志的锁"><a class="markdownIt-Anchor" href="#基于标志的锁">#</a> 基于标志的锁</h2>
+<p>以下是基于标志（flag）的锁的实现方式：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">typedef</span> <span class="hljs-keyword">struct</span> <span class="hljs-title class_">__lock_t</span> &#123;<span class="hljs-type">int</span> flag;&#125; <span class="hljs-type">lock_t</span>;<br><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">init</span><span class="hljs-params">(<span class="hljs-type">lock_t</span> *mutex)</span></span>&#123;<br>    <span class="hljs-comment">// 0 -&gt; lock is available, 1 -&gt; held</span><br>    mutex -&gt; flag = <span class="hljs-number">0</span>;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">lock</span><span class="hljs-params">(<span class="hljs-type">lock_t</span> *mutex)</span></span>&#123;<br>    <span class="hljs-keyword">while</span>(mutex -&gt; flag == <span class="hljs-number">1</span>) <span class="hljs-comment">// TEST the flag</span><br>        ;<span class="hljs-comment">// spin-wait(do nothing)</span><br>    mutex -&gt; flag = <span class="hljs-number">1</span>;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">unlock</span><span class="hljs-params">(<span class="hljs-type">lock_t</span> *mutex)</span></span>&#123;<br>    mutex -&gt; flag = <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="11"><a class="markdownIt-Anchor" href="#11">#</a> 1.1</h3>
+<blockquote>
+<p>第 10 行的注释，spin-wait，是什么意思？</p>
+</blockquote>
+<p>答： <code>spin-wait</code>  是指自旋等待， <code>flag</code>  为 1 时，线程反复检查锁变量是否可用； <code>flag</code>  为 0 时，说明锁变量可用，设置 <code>flag</code>  为 1 表示保持该锁。</p>
+<h3 id="12"><a class="markdownIt-Anchor" href="#12">#</a> 1.2</h3>
+<blockquote>
+<p>假设没有底层硬件或者操作系统的相关支持，该锁用于进程间的互斥，则其实现方式会有什么问题？请详细说明。</p>
+</blockquote>
+<p>答：获取、释放锁，实际上是读写存储内存或寄存器，因此这种读写操作必须是原子的。如果没有底层硬件或者操作系统的支持，那么就无法保证其操作的原子性。对于 <code>lock函数</code> ， <code>flag</code>  检测和设置本该是一体的，但由于无法保证原子性，那么 <code>while</code>  和 <code>mutex -&gt; flag = 1</code>  之间就可能混入其他线程的操作，例如线程 A 执行到 <code>mutex-&gt;flag = 1</code>  语句之前，另一个线程 B 运行到 <code>while</code> ，由于 <code>mutex-&gt;flag</code>  还未被赋值为 1，线程 B 也可以跳出 <code>while</code> ，于是线程 A 和 B 都拿到了这把锁。</p>
+<hr>
+<h2 id="基于test-and-set原子指令的锁"><a class="markdownIt-Anchor" href="#基于test-and-set原子指令的锁">#</a> 基于 Test-and-Set 原子指令的锁</h2>
+<p>以下是 <code>Test-and-Set</code>  原子指令的实现逻辑：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">TestAndSet</span><span class="hljs-params">(<span class="hljs-type">int</span> *old_ptr, <span class="hljs-type">int</span> <span class="hljs-keyword">new</span>)</span> </span>&#123;<br>	<span class="hljs-type">int</span> old = *old_ptr;	<span class="hljs-comment">//fetch old value at old_ptr</span><br> 	*old_ptr = <span class="hljs-keyword">new</span>;	<span class="hljs-comment">//store ‘new’ into old_ptr</span><br> 	<span class="hljs-keyword">return</span> old;	<span class="hljs-comment">//return the old value</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<p>以下是基于  <code>Test-and-Set</code>  指令的锁实现方式：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">typedef</span> <span class="hljs-keyword">struct</span> <span class="hljs-title class_">__lock_t</span> &#123;<br> 	<span class="hljs-type">int</span> flag;<br>&#125; <span class="hljs-type">lock_t</span>;<br><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">init</span><span class="hljs-params">(<span class="hljs-type">lock_t</span> *lock)</span> </span>&#123;<br>	<span class="hljs-comment">// 0 indicates that lock is available, 1 that it is held</span><br>	lock-&gt;flag = <span class="hljs-number">0</span>;<br>&#125;<br><br> <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">lock</span><span class="hljs-params">(<span class="hljs-type">lock_t</span> *lock)</span> </span>&#123;<br>	<span class="hljs-keyword">while</span> (<span class="hljs-built_in">TestAndSet</span>(&amp;lock-&gt;flag, <span class="hljs-number">1</span>) == <span class="hljs-number">1</span>)<br>	; <span class="hljs-comment">// spin-wait (do nothing)</span><br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">unlock</span><span class="hljs-params">(<span class="hljs-type">lock_t</span> *lock)</span> </span>&#123;<br>	lock-&gt;flag = <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="21"><a class="markdownIt-Anchor" href="#21">#</a> 2.1</h3>
+<blockquote>
+<p>&quot;基于 Test-and-Set&quot; 指令的锁实现方式，是否可以解决 1.2 中，“基于标志 （flag）的锁实现方式” 所存在的问题，为什么？</p>
+</blockquote>
+<p>答：可以。“返回旧值” 和 “设置新值” 这两个操作共同组成了一个原子操作，执行期间不会被打断。当线程 A 执行 <code>TestAndSet</code>  原语时，会把 <code>lock-&gt;flag</code>  设置为 1，并返回之前的值。若返回值是 0，那么线程 A 就可以退出 <code>while</code> ，此时若线程 B 也进入 <code>while</code> ，由于 <code>TestAndSet</code>  原语已把 <code>lock-&gt;flag</code>  设置为 1，线程 B 无法退出 <code>while</code> ，也就不会出现有多个线程同时拿到同一把锁的情况。</p>
+<h3 id="22"><a class="markdownIt-Anchor" href="#22">#</a> 2.2</h3>
+<blockquote>
+<p>假设系统中有 2 个线程 X 和 Y（优先级相同），它们之间通过 “CPU 时间片轮转调度策略” 来分享底层唯一的一个 CPU 资源。其中，X 在某个时刻通过图 3 的 lock () 获取到了锁，并且需要运行 10 个时间片才会调用 unlock () 来释放锁。请问，在此时间段内，Y 会分到时间片吗？如果可以分到，那么 Y 是个什么运行形态？此运行形态会带来什么样的负面效果？</p>
+</blockquote>
+<p>答：Y 会分到时间片。按照时间片轮转调度策略，X 的时间片结束之后，就会被移动到就绪队列尾部，这时 Y 分到时间片并开始执行，但是锁还被 X 占据，所以 Y 即使分到了时间片，也只能一直停留在 <code>while</code>  中，直到 Y 的时间片结束，然后轮到 X 继续执行…… 实际上 Y 除了循环判断 <code>lock-&gt;flag</code> ，并没有做什么有用的工作。这样的运行形态会使得 CPU 运行效率变得比较低，因为 Y 实际上并没有做什么工作，造成资源浪费。</p>
+<hr>
+<h2 id="基于linux的futex锁"><a class="markdownIt-Anchor" href="#基于linux的futex锁">#</a> 基于 Linux 的 Futex 锁</h2>
+<p>以下是基于 Linux 的 Futex 锁实现方式：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">mutex_lock</span> <span class="hljs-params">(<span class="hljs-type">int</span> *mutex)</span> </span>&#123;<br>	<span class="hljs-type">int</span> v;<br>	<span class="hljs-comment">/* Bit 31 was clear, we got the mutex (this is the fastpath) */</span><br>	<span class="hljs-keyword">if</span> (<span class="hljs-built_in">atomic_bit_test_set</span> (mutex, <span class="hljs-number">31</span>) == <span class="hljs-number">0</span>)<br>     	<span class="hljs-keyword">return</span>;<br>	<span class="hljs-built_in">atomic_increment</span> (mutex);<br>	<span class="hljs-keyword">while</span> (<span class="hljs-number">1</span>) &#123;<br> 		<span class="hljs-keyword">if</span> (<span class="hljs-built_in">atomic_bit_test_set</span> (mutex, <span class="hljs-number">31</span>) == <span class="hljs-number">0</span>) &#123;<br> 			<span class="hljs-built_in">atomic_decrement</span> (mutex);<br> 			<span class="hljs-keyword">return</span>;<br> 		&#125;<br> 		<span class="hljs-comment">/* We have to wait now. First make sure the futex value</span><br><span class="hljs-comment"> 		We are monitoring is truly negative (i.e. locked). */</span><br> 		v = *mutex;<br> 		<span class="hljs-keyword">if</span> (v &gt;= <span class="hljs-number">0</span>)<br>			<span class="hljs-keyword">continue</span>;<br> 		<span class="hljs-built_in">futex_wait</span> (mutex, v);<br> 	&#125;<span class="hljs-comment">/*end while*/</span><br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">mutex_unlock</span> <span class="hljs-params">(<span class="hljs-type">int</span> *mutex)</span> </span>&#123;<br>	<span class="hljs-comment">/* Adding 0x80000000 to the counter results in 0 if and only if</span><br><span class="hljs-comment">     there are not other interested threads */</span><br>     <span class="hljs-keyword">if</span> (<span class="hljs-built_in">atomic_add_zero</span> (mutex, <span class="hljs-number">0x80000000</span>))<br>         <span class="hljs-keyword">return</span>;<br><br>     <span class="hljs-comment">/* There are other threads waiting for this mutex,</span><br><span class="hljs-comment">     wake one of them up. */</span><br>     <span class="hljs-built_in">futex_wake</span> (mutex);<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="31"><a class="markdownIt-Anchor" href="#31">#</a> 3.1</h3>
+<blockquote>
+<p>该图中的第 4～5 行，和图中的第 8～11 行，具体实现什么作用？它们是否有功 能冗余和冲突？可以去掉当中的一个吗？为什么？</p>
+</blockquote>
+<p>答：</p>
+<ul>
+<li>4-5 行：判断锁是否被占用并置 1，若能获取锁，则直接退出 <code>mutex_lock()</code> 。</li>
+<li>8-11 行：被 <code>futex_wait</code>  的线程被 <code>futex_wake</code>  唤醒后，判断能否获取锁，若能则占用锁并退出 <code>while</code> 。</li>
+<li>不能去掉任何一个。对于 4-5 行，若能直接获取锁，则无需被 <code>wait</code> ；若去掉 8-11 行，则被 <code>wake</code>  后也无法跳出 <code>while</code> 。这两段代码是配合 <code>atomic_increment</code>  和 <code>atomic_decrement</code>  使用的，能够统计在等待的线程数，缺一不可。</li>
+</ul>
+<h3 id="32"><a class="markdownIt-Anchor" href="#32">#</a> 3.2</h3>
+<blockquote>
+<p>在第 24～25 行中的 if 语句是用来干什么的？如果条件语句 atomic_add_zero (mutex, 0x80000000) 为真，为什么要直接 return，为什么不直接执行第 29 行程序呢？</p>
+</blockquote>
+<p>答：</p>
+<ul>
+<li><code>if</code>  语句是为了确保锁可用时，不会执行 <code>wait</code> 。假设没有 <code>if</code>  语句，A 没有获取到锁，在 A 执行 <code>wait</code>  之前，B 执行了 <code>unlock</code> ，此时 <code>atomic_add_zero</code>  返回 <code>true</code> ，也就不会执行 <code>wake</code> ，然后 A 执行了 <code>wait</code> ，此时如果没有新的线程加入，那么 A 就永远不会被唤醒。</li>
+<li>如果条件语句 <code>atomic_add_zero (mutex, 0x80000000)</code>  为真，说明在等待的线程数为 0，没有线程需要被 <code>wake</code> ，直接 <code>return</code>  能提高效率。</li>
+</ul>
+<h3 id="33"><a class="markdownIt-Anchor" href="#33">#</a> 3.3</h3>
+<blockquote>
+<p>Futex 锁实现方式是否改进了 2.2 问题中提到的负面效果，为什么？</p>
+</blockquote>
+<p>答：改进了 2.2 问题中的负面效果， <code>futex_wait</code>  可以让正在执行但没有获得锁的线程睡眠，让出 CPU 给别的线程，避免了无用的等待，能提高 CPU 的使用效率。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="category-chain-item">操作系统</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Linux/" class="print-no-link">#Linux</a>
+      
+        <a href="/tags/%E9%94%81/" class="print-no-link">#锁</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>锁</div>
+      <div>http://example.com/2021/12/11/Lock/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>DzcGood</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2021年12月11日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/12/23/JDBC/" title="MySql安装及JDBC的使用">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">MySql安装及JDBC的使用</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/11/29/Redis/" title="使用Jedis连接Redis">
+                        <span class="hidden-mobile">使用Jedis连接Redis</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"9fbb8555afbf1f848bb2","clientSecret":"32ba92cfb68c05c75d8156176b68c0a91d2dd130","repo":"gitalk","owner":"dzcgood","admin":["dzcgood"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {
+            id: '4c7ef298b790d81b8a6acf6b1c08d491'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+      
+
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  var relativeDate = function() {
+    var updatedTime = document.getElementById('updated-time');
+    if (updatedTime) {
+      var text = updatedTime.textContent;
+      var reg = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})/;
+      var matchs = text.match(reg);
+      if (matchs) {
+        var relativeTime = moment(matchs[0]).fromNow();
+        updatedTime.textContent = text.replace(reg, relativeTime);
+      }
+      updatedTime.style.display = '';
+    }
+  };
+  Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/moment.min.js', function() {
+    if (!'zh-cn'.startsWith('en')) {
+      Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/locale/zh-cn.min.js', function() {
+        relativeDate();
+      });
+    } else {
+      relativeDate();
+    }
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+    <channel>
+        <title>DzcGood • Posts by &#34;二分查找&#34; tag</title>
+        <link>http://example.com</link>
+        <description></description>
+        <language>zh-CN</language>
+        <pubDate>Tue, 02 Nov 2021 00:41:36 +0800</pubDate>
+        <lastBuildDate>Tue, 02 Nov 2021 00:41:36 +0800</lastBuildDate>
+        <category>leetcode</category>
+        <category>数组</category>
+        <category>二分查找</category>
+        <category>编译原理</category>
+        <category>SCNU-CS</category>
+        <category>Brain-Like Computing</category>
+        <category>Spiking Neural Networks</category>
+        <category>MySql</category>
+        <category>JDBC</category>
+        <category>学习笔记</category>
+        <category>Linux</category>
+        <category>锁</category>
+        <category>Redis</category>
+        <category>Jedis</category>
+        <category>XLEX</category>
+        <category>MySQL</category>
+        <category>JavaSE</category>
+        <item>
+            <guid isPermalink="true">http://example.com/2021/11/02/BinarySearch/</guid>
+            <title>二分查找</title>
+            <link>http://example.com/2021/11/02/BinarySearch/</link>
+            <category>leetcode</category>
+            <category>数组</category>
+            <category>二分查找</category>
+            <pubDate>Tue, 02 Nov 2021 00:41:36 +0800</pubDate>
+            <description><![CDATA[ &lt;h1 id=&#34;leetcode-t704-二分查找&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#leetcode-t704-二分查找&#34;&gt;#&lt;/a&gt; Leetcode T704 二分查找&lt;/h1&gt;
+&lt;h2 id=&#34;关于&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#关于&#34;&gt;#&lt;/a&gt; 关于&lt;/h2&gt;
+&lt;p&gt;第一篇刷题&lt;s&gt;水文&lt;/s&gt;当然要从最简单的数组开始啦～&lt;/p&gt;
+&lt;h2 id=&#34;题目描述&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#题目描述&#34;&gt;#&lt;/a&gt; 题目描述&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;一个 n 个元素有序的（升序）整型数组 nums 和一个目标值 target  ，写一个函数搜索 nums 中的 target，如果目标值存在返回下标，否则返回 -1。&lt;/p&gt;
+&lt;p&gt;示例 1:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;输入: nums = [-1,0,3,5,9,12], target = 9&lt;br&gt;
+ 输出: 4&lt;br&gt;
+ 解释: 9 出现在 nums 中并且下标为 4&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;示例 2:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;输入: nums = [-1,0,3,5,9,12], target = 2&lt;br&gt;
+ 输出: -1&lt;br&gt;
+ 解释: 2 不存在 nums 中因此返回 -1&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;提示：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;你可以假设 nums 中的所有元素是不重复的。&lt;br&gt;
+n 将在 [1, 10000] 之间。&lt;br&gt;
+nums 的每个元素都将在 [-9999, 9999] 之间。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;来源：力扣（LeetCode）&lt;br&gt;
+链接：&lt;a href=&#34;https://leetcode-cn.com/problems/binary-search&#34;&gt;https://leetcode-cn.com/problems/binary-search&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;分析&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#分析&#34;&gt;#&lt;/a&gt; 分析&lt;/h2&gt;
+&lt;p&gt;这是一个数组的题，考察的知识点是二分查找，&lt;s&gt;这不是废话吗？题目明摆写着呢。&lt;/s&gt;&lt;/p&gt;
+&lt;p&gt;还是好好分析一下，这类题目如果直接暴力遍历的话，时间复杂度为 O (n)，数组元素比较多的情况下，应该会超时吧&lt;/p&gt;
+&lt;p&gt;这时要关注一下题目给的条件：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;有序的（升序）整型数组&lt;/li&gt;
+&lt;li&gt;可以假设 nums 中的所有元素是不重复的&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这两个条件就是为二分查找量身打造的，对于二分查找，一定要满足&lt;em&gt;&lt;strong&gt;元素有序&lt;/strong&gt;&lt;/em&gt;的条件，不然得到的结果&lt;s&gt;肯定&lt;/s&gt;是错的，那这题当然是用&lt;strong&gt;二分查找&lt;/strong&gt;啦&lt;/p&gt;
+&lt;h2 id=&#34;思路&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#思路&#34;&gt;#&lt;/a&gt; 思路&lt;/h2&gt;
+&lt;p&gt;先定义两个整型变量 left，right 和 mid，约定要查找的目标 index 的索引位置在区间 [left, right] 内（注意，这里是闭区间，如果是左闭右开的话，对应的算法有所不同）。对于每一对 left 和 right 值，始终让 mid =  (left + right) / 2，比较 nums [mid] 和 target 的大小：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;target &amp;lt;nums [mid]：说明 target 的索引位置在 [left, mid)，此时更新 right 为 mid - 1&lt;/li&gt;
+&lt;li&gt;target = nums [mid]：此时的 mid 就是所求值&lt;/li&gt;
+&lt;li&gt;target &amp;gt; nums [mid]：说明 target 的索引位置在 (mid, right]，此时更新 left 为 mid + 1&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;复杂度分析&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#复杂度分析&#34;&gt;#&lt;/a&gt; 复杂度分析&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;时间复杂度：O (logn)，其中 n 是数组的长度&lt;/li&gt;
+&lt;li&gt;空间复杂度：O (1)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;代码java语言描述&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#代码java语言描述&#34;&gt;#&lt;/a&gt; 代码（Java 语言描述）&lt;/h2&gt;
+&lt;figure class=&#34;highlight java&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;27&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;code class=&#34;hljs java&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;package&lt;/span&gt; T704;&lt;br&gt;&lt;span class=&#34;hljs-comment&#34;&gt;/**&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;hljs-comment&#34;&gt; * 简单地不能再简单的二分查找&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;hljs-comment&#34;&gt; * */&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;hljs-title class_&#34;&gt;Solution&lt;/span&gt; &amp;#123;&lt;br&gt;    &lt;span class=&#34;hljs-keyword&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;hljs-type&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;hljs-title function_&#34;&gt;search&lt;/span&gt;&lt;span class=&#34;hljs-params&#34;&gt;(&lt;span class=&#34;hljs-type&#34;&gt;int&lt;/span&gt;[] nums, &lt;span class=&#34;hljs-type&#34;&gt;int&lt;/span&gt; target)&lt;/span&gt; &amp;#123;&lt;br&gt;        &lt;span class=&#34;hljs-comment&#34;&gt;//这里假设nums[target]的索引在区间[left, right]内，注意这里是闭区间&lt;/span&gt;&lt;br&gt;        &lt;span class=&#34;hljs-type&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;hljs-variable&#34;&gt;left&lt;/span&gt; &lt;span class=&#34;hljs-operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;;&lt;br&gt;        &lt;span class=&#34;hljs-type&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;hljs-variable&#34;&gt;right&lt;/span&gt; &lt;span class=&#34;hljs-operator&#34;&gt;=&lt;/span&gt; nums.length;&lt;br&gt;        &lt;span class=&#34;hljs-type&#34;&gt;int&lt;/span&gt; mid;&lt;br&gt;        &lt;span class=&#34;hljs-keyword&#34;&gt;while&lt;/span&gt;(left &amp;lt;= right)&amp;#123;&lt;br&gt;            mid = (left + right) / &lt;span class=&#34;hljs-number&#34;&gt;2&lt;/span&gt;;&lt;br&gt;            &lt;span class=&#34;hljs-comment&#34;&gt;//找到&lt;/span&gt;&lt;br&gt;            &lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt;(nums[mid] == target)&amp;#123;&lt;br&gt;                &lt;span class=&#34;hljs-keyword&#34;&gt;return&lt;/span&gt; mid;&lt;br&gt;            &amp;#125;&lt;span class=&#34;hljs-keyword&#34;&gt;else&lt;/span&gt; &lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt;(target &amp;lt; nums[mid])&amp;#123;&lt;br&gt;                &lt;span class=&#34;hljs-comment&#34;&gt;//说明target在左边&lt;/span&gt;&lt;br&gt;                right = mid - &lt;span class=&#34;hljs-number&#34;&gt;1&lt;/span&gt;;&lt;br&gt;            &amp;#125;&lt;span class=&#34;hljs-keyword&#34;&gt;else&lt;/span&gt;&amp;#123;&lt;br&gt;                &lt;span class=&#34;hljs-comment&#34;&gt;//说明target在右边&lt;/span&gt;&lt;br&gt;                left = mid + &lt;span class=&#34;hljs-number&#34;&gt;1&lt;/span&gt;;&lt;br&gt;            &amp;#125;&lt;br&gt;        &amp;#125;&lt;br&gt;        &lt;span class=&#34;hljs-comment&#34;&gt;//没找到，返回-1&lt;/span&gt;&lt;br&gt;        &lt;span class=&#34;hljs-keyword&#34;&gt;return&lt;/span&gt; -&lt;span class=&#34;hljs-number&#34;&gt;1&lt;/span&gt;;&lt;br&gt;    &amp;#125;&lt;br&gt;&amp;#125;&lt;br&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2 id=&#34;算法对比&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#算法对比&#34;&gt;#&lt;/a&gt; 算法对比&lt;/h2&gt;
+&lt;p&gt;这么简单的二分查找肯定是标准答案啦（&lt;s&gt;等到别的题我就知道错了&lt;/s&gt;）&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog-img-1308044888.cos.ap-shanghai.myqcloud.com/img/image-20211102010323501.png&#34; alt=&#34;执行用时分布图表&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog-img-1308044888.cos.ap-shanghai.myqcloud.com/img/image-20211102010414508.png&#34; alt=&#34;执行消耗内存分布图表&#34;&gt;&lt;/p&gt;
+ ]]></description>
+        </item>
+    </channel>
+</rss>
